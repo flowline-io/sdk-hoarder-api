@@ -1,0 +1,1109 @@
+openapi: 3.0.0
+info:
+  description: The API for the Hoarder app
+  title: Hoarder API
+  version: 1.0.0
+servers:
+- url: "{address}/api/v1"
+  variables:
+    address:
+      default: https://try.hoarder.app
+      description: The address of the hoarder server
+paths:
+  /bookmarks:
+    get:
+      description: Get all bookmarks
+      parameters:
+      - explode: true
+        in: query
+        name: archived
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: favourited
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          $ref: '#/components/schemas/Cursor'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookmarks'
+          description: Object with all bookmarks data.
+      security:
+      - bearerAuth: []
+      summary: Get all bookmarks
+      tags:
+      - Bookmarks
+    post:
+      description: Create a new bookmark
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_bookmarks_post_request'
+        description: The bookmark to create
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+          description: The created bookmark
+      security:
+      - bearerAuth: []
+      summary: Create a new bookmark
+      tags:
+      - Bookmarks
+  /bookmarks/{bookmarkId}:
+    delete:
+      description: Delete bookmark by its id
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      responses:
+        "204":
+          description: No content - the bookmark was deleted
+      security:
+      - bearerAuth: []
+      summary: Delete a bookmark
+      tags:
+      - Bookmarks
+    get:
+      description: Get bookmark by its id
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+          description: Object with bookmark data.
+      security:
+      - bearerAuth: []
+      summary: Get a single bookmark
+      tags:
+      - Bookmarks
+    patch:
+      description: Update bookmark by its id
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_bookmarks__bookmarkId__patch_request'
+        description: The data to update. Only the fields you want to update need to
+          be provided.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_bookmarks__bookmarkId__patch_200_response'
+          description: The updated bookmark
+      security:
+      - bearerAuth: []
+      summary: Update a bookmark
+      tags:
+      - Bookmarks
+  /bookmarks/{bookmarkId}/tags:
+    delete:
+      description: Detach tags from a bookmark
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_bookmarks__bookmarkId__tags_post_request'
+        description: The tags to detach.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_bookmarks__bookmarkId__tags_delete_200_response'
+          description: The list of detached tag ids
+      security:
+      - bearerAuth: []
+      summary: Detach tags from a bookmark
+      tags:
+      - Bookmarks
+    post:
+      description: Attach tags to a bookmark
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_bookmarks__bookmarkId__tags_post_request'
+        description: The tags to attach.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_bookmarks__bookmarkId__tags_post_200_response'
+          description: The list of attached tag ids
+      security:
+      - bearerAuth: []
+      summary: Attach tags to a bookmark
+      tags:
+      - Bookmarks
+  /lists:
+    get:
+      description: Get all lists
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_lists_get_200_response'
+          description: Object with all lists data.
+      security:
+      - bearerAuth: []
+      summary: Get all lists
+      tags:
+      - Lists
+    post:
+      description: Create a new list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_lists_post_request'
+        description: The list to create
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+          description: The created list
+      security:
+      - bearerAuth: []
+      summary: Create a new list
+      tags:
+      - Lists
+  /lists/{listId}:
+    delete:
+      description: Delete list by its id
+      parameters:
+      - explode: false
+        in: path
+        name: listId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListId'
+        style: simple
+      responses:
+        "204":
+          description: No content - the bookmark was deleted
+      security:
+      - bearerAuth: []
+      summary: Delete a list
+      tags:
+      - Lists
+    get:
+      description: Get list by its id
+      parameters:
+      - explode: false
+        in: path
+        name: listId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+          description: Object with list data.
+      security:
+      - bearerAuth: []
+      summary: Get a single list
+      tags:
+      - Lists
+  /list/{listId}:
+    patch:
+      description: Update list by its id
+      parameters:
+      - explode: false
+        in: path
+        name: listId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_list__listId__patch_request'
+        description: The data to update. Only the fields you want to update need to
+          be provided.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/List'
+          description: The updated list
+      security:
+      - bearerAuth: []
+      summary: Update a list
+      tags:
+      - Lists
+  /lists/{listId}/bookmarks:
+    get:
+      description: Get the bookmarks in a list
+      parameters:
+      - explode: false
+        in: path
+        name: listId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListId'
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          $ref: '#/components/schemas/Cursor'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookmarks'
+          description: Object with list data.
+      security:
+      - bearerAuth: []
+      summary: Get a bookmarks in a list
+      tags:
+      - Lists
+  /lists/{listId}/bookmarks/{bookmarkId}:
+    delete:
+      description: Remove the bookmarks from a list
+      parameters:
+      - explode: false
+        in: path
+        name: listId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListId'
+        style: simple
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      responses:
+        "204":
+          description: No content - the bookmark was added
+      security:
+      - bearerAuth: []
+      summary: Remove a bookmark from a list
+      tags:
+      - Lists
+    put:
+      description: Add the bookmarks to a list
+      parameters:
+      - explode: false
+        in: path
+        name: listId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ListId'
+        style: simple
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      responses:
+        "204":
+          description: No content - the bookmark was added
+      security:
+      - bearerAuth: []
+      summary: Add a bookmark to a list
+      tags:
+      - Lists
+  /tags:
+    get:
+      description: Get all tags
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_tags_get_200_response'
+          description: Object with all tags data.
+      security:
+      - bearerAuth: []
+      summary: Get all tags
+      tags:
+      - Tags
+  /tags/{tagId}:
+    delete:
+      description: Delete tag by its id
+      parameters:
+      - explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          $ref: '#/components/schemas/TagId'
+        style: simple
+      responses:
+        "204":
+          description: No content - the bookmark was deleted
+      security:
+      - bearerAuth: []
+      summary: Delete a tag
+      tags:
+      - Tags
+    get:
+      description: Get tag by its id
+      parameters:
+      - explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          $ref: '#/components/schemas/TagId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: Object with list data.
+      security:
+      - bearerAuth: []
+      summary: Get a single tag
+      tags:
+      - Tags
+    patch:
+      description: Update tag by its id
+      parameters:
+      - explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          $ref: '#/components/schemas/TagId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_tags__tagId__patch_request'
+        description: The data to update. Only the fields you want to update need to
+          be provided.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: The updated tag
+      security:
+      - bearerAuth: []
+      summary: Update a tag
+      tags:
+      - Tags
+  /tags/{tagId}/bookmarks:
+    get:
+      description: Get the bookmarks with the tag
+      parameters:
+      - explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          $ref: '#/components/schemas/TagId'
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          $ref: '#/components/schemas/Cursor'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookmarks'
+          description: Object with list data.
+      security:
+      - bearerAuth: []
+      summary: Get a bookmarks with the tag
+      tags:
+      - Tags
+components:
+  parameters:
+    BookmarkId:
+      explode: false
+      in: path
+      name: bookmarkId
+      required: true
+      schema:
+        $ref: '#/components/schemas/BookmarkId'
+      style: simple
+    ListId:
+      explode: false
+      in: path
+      name: listId
+      required: true
+      schema:
+        $ref: '#/components/schemas/ListId'
+      style: simple
+    TagId:
+      explode: false
+      in: path
+      name: tagId
+      required: true
+      schema:
+        $ref: '#/components/schemas/TagId'
+      style: simple
+  schemas:
+    BookmarkId:
+      example: ieidlxygmwj87oxz5hxttoc8
+      type: string
+    ListId:
+      example: ieidlxygmwj87oxz5hxttoc8
+      type: string
+    TagId:
+      example: ieidlxygmwj87oxz5hxttoc8
+      type: string
+    Bookmark:
+      example:
+        summary: summary
+        createdAt: createdAt
+        archived: true
+        taggingStatus: success
+        note: note
+        assets:
+        - id: id
+          assetType: screenshot
+        - id: id
+          assetType: screenshot
+        favourited: true
+        id: id
+        title: title
+        content:
+          crawledAt: crawledAt
+          screenshotAssetId: screenshotAssetId
+          favicon: https://openapi-generator.tech
+          imageAssetId: imageAssetId
+          imageUrl: https://openapi-generator.tech
+          videoAssetId: videoAssetId
+          description: description
+          type: link
+          title: title
+          url: https://openapi-generator.tech
+          fullPageArchiveAssetId: fullPageArchiveAssetId
+          htmlContent: htmlContent
+        tags:
+        - name: name
+          attachedBy: ai
+          id: id
+        - name: name
+          attachedBy: ai
+          id: id
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+        title:
+          maxLength: 250
+          nullable: true
+          type: string
+        archived:
+          type: boolean
+        favourited:
+          type: boolean
+        taggingStatus:
+          enum:
+          - success
+          - failure
+          - pending
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        summary:
+          nullable: true
+          type: string
+        tags:
+          items:
+            $ref: '#/components/schemas/Bookmark_tags_inner'
+          type: array
+        content:
+          $ref: '#/components/schemas/_bookmarks_post_request'
+        assets:
+          items:
+            $ref: '#/components/schemas/Bookmark_assets_inner'
+          type: array
+      required:
+      - archived
+      - assets
+      - content
+      - createdAt
+      - favourited
+      - id
+      - taggingStatus
+      - tags
+      type: object
+    PaginatedBookmarks:
+      example:
+        bookmarks:
+        - summary: summary
+          createdAt: createdAt
+          archived: true
+          taggingStatus: success
+          note: note
+          assets:
+          - id: id
+            assetType: screenshot
+          - id: id
+            assetType: screenshot
+          favourited: true
+          id: id
+          title: title
+          content:
+            crawledAt: crawledAt
+            screenshotAssetId: screenshotAssetId
+            favicon: https://openapi-generator.tech
+            imageAssetId: imageAssetId
+            imageUrl: https://openapi-generator.tech
+            videoAssetId: videoAssetId
+            description: description
+            type: link
+            title: title
+            url: https://openapi-generator.tech
+            fullPageArchiveAssetId: fullPageArchiveAssetId
+            htmlContent: htmlContent
+          tags:
+          - name: name
+            attachedBy: ai
+            id: id
+          - name: name
+            attachedBy: ai
+            id: id
+        - summary: summary
+          createdAt: createdAt
+          archived: true
+          taggingStatus: success
+          note: note
+          assets:
+          - id: id
+            assetType: screenshot
+          - id: id
+            assetType: screenshot
+          favourited: true
+          id: id
+          title: title
+          content:
+            crawledAt: crawledAt
+            screenshotAssetId: screenshotAssetId
+            favicon: https://openapi-generator.tech
+            imageAssetId: imageAssetId
+            imageUrl: https://openapi-generator.tech
+            videoAssetId: videoAssetId
+            description: description
+            type: link
+            title: title
+            url: https://openapi-generator.tech
+            fullPageArchiveAssetId: fullPageArchiveAssetId
+            htmlContent: htmlContent
+          tags:
+          - name: name
+            attachedBy: ai
+            id: id
+          - name: name
+            attachedBy: ai
+            id: id
+        nextCursor: nextCursor
+      properties:
+        bookmarks:
+          items:
+            $ref: '#/components/schemas/Bookmark'
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+      required:
+      - bookmarks
+      - nextCursor
+      type: object
+    Cursor:
+      type: string
+    List:
+      example:
+        name: name
+        icon: icon
+        id: id
+        parentId: parentId
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+        parentId:
+          nullable: true
+          type: string
+      required:
+      - icon
+      - id
+      - name
+      - parentId
+      type: object
+    Tag:
+      example:
+        name: name
+        numBookmarks: 0.8008281904610115
+        id: id
+        numBookmarksByAttachedType:
+          ai: 6.027456183070403
+          human: 1.4658129805029452
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        numBookmarks:
+          type: number
+        numBookmarksByAttachedType:
+          $ref: '#/components/schemas/Tag_numBookmarksByAttachedType'
+      required:
+      - id
+      - name
+      - numBookmarks
+      - numBookmarksByAttachedType
+      type: object
+    _bookmarks_post_request_oneOf:
+      example:
+        crawledAt: crawledAt
+        screenshotAssetId: screenshotAssetId
+        favicon: https://openapi-generator.tech
+        imageAssetId: imageAssetId
+        imageUrl: https://openapi-generator.tech
+        videoAssetId: videoAssetId
+        description: description
+        type: link
+        title: title
+        url: https://openapi-generator.tech
+        fullPageArchiveAssetId: fullPageArchiveAssetId
+        htmlContent: htmlContent
+      properties:
+        type:
+          enum:
+          - link
+          type: string
+        url:
+          format: uri
+          type: string
+        title:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        imageUrl:
+          format: uri
+          nullable: true
+          type: string
+        imageAssetId:
+          nullable: true
+          type: string
+        screenshotAssetId:
+          nullable: true
+          type: string
+        fullPageArchiveAssetId:
+          nullable: true
+          type: string
+        videoAssetId:
+          nullable: true
+          type: string
+        favicon:
+          format: uri
+          nullable: true
+          type: string
+        htmlContent:
+          nullable: true
+          type: string
+        crawledAt:
+          nullable: true
+          type: string
+      required:
+      - type
+      - url
+      type: object
+    _bookmarks_post_request_oneOf_1:
+      properties:
+        type:
+          enum:
+          - text
+          type: string
+        text:
+          type: string
+        sourceUrl:
+          nullable: true
+          type: string
+      required:
+      - text
+      - type
+      type: object
+    _bookmarks_post_request_oneOf_2:
+      properties:
+        type:
+          enum:
+          - asset
+          type: string
+        assetType:
+          enum:
+          - image
+          - pdf
+          type: string
+        assetId:
+          type: string
+        fileName:
+          nullable: true
+          type: string
+        sourceUrl:
+          nullable: true
+          type: string
+      required:
+      - assetId
+      - assetType
+      - type
+      type: object
+    _bookmarks_post_request_oneOf_3:
+      properties:
+        type:
+          enum:
+          - unknown
+          type: string
+      required:
+      - type
+      type: object
+    _bookmarks_post_request:
+      oneOf:
+      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf'
+      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf_1'
+      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf_2'
+      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf_3'
+    _bookmarks__bookmarkId__patch_request:
+      properties:
+        archived:
+          type: boolean
+        favourited:
+          type: boolean
+        summary:
+          nullable: true
+          type: string
+        note:
+          type: string
+        title:
+          maxLength: 250
+          nullable: true
+          type: string
+        createdAt:
+          type: string
+      type: object
+    _bookmarks__bookmarkId__patch_200_response:
+      example:
+        summary: summary
+        createdAt: createdAt
+        archived: true
+        taggingStatus: success
+        note: note
+        favourited: true
+        id: id
+        title: title
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+        title:
+          maxLength: 250
+          nullable: true
+          type: string
+        archived:
+          type: boolean
+        favourited:
+          type: boolean
+        taggingStatus:
+          enum:
+          - success
+          - failure
+          - pending
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        summary:
+          nullable: true
+          type: string
+      required:
+      - archived
+      - createdAt
+      - favourited
+      - id
+      - taggingStatus
+      type: object
+    _bookmarks__bookmarkId__tags_post_request_tags_inner:
+      properties:
+        tagId:
+          type: string
+        tagName:
+          type: string
+      type: object
+    _bookmarks__bookmarkId__tags_post_request:
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/_bookmarks__bookmarkId__tags_post_request_tags_inner'
+          type: array
+      required:
+      - tags
+      type: object
+    _bookmarks__bookmarkId__tags_post_200_response:
+      example:
+        attached:
+        - ieidlxygmwj87oxz5hxttoc8
+        - ieidlxygmwj87oxz5hxttoc8
+      properties:
+        attached:
+          items:
+            $ref: '#/components/schemas/TagId'
+          type: array
+      required:
+      - attached
+      type: object
+    _bookmarks__bookmarkId__tags_delete_200_response:
+      example:
+        detached:
+        - ieidlxygmwj87oxz5hxttoc8
+        - ieidlxygmwj87oxz5hxttoc8
+      properties:
+        detached:
+          items:
+            $ref: '#/components/schemas/TagId'
+          type: array
+      required:
+      - detached
+      type: object
+    _lists_get_200_response:
+      example:
+        lists:
+        - name: name
+          icon: icon
+          id: id
+          parentId: parentId
+        - name: name
+          icon: icon
+          id: id
+          parentId: parentId
+      properties:
+        lists:
+          items:
+            $ref: '#/components/schemas/List'
+          type: array
+      required:
+      - lists
+      type: object
+    _lists_post_request:
+      properties:
+        name:
+          maxLength: 40
+          minLength: 1
+          type: string
+        icon:
+          type: string
+        parentId:
+          nullable: true
+          type: string
+      required:
+      - icon
+      - name
+      type: object
+    _list__listId__patch_request:
+      properties:
+        name:
+          maxLength: 40
+          minLength: 1
+          type: string
+        icon:
+          type: string
+        parentId:
+          nullable: true
+          type: string
+      type: object
+    _tags_get_200_response:
+      example:
+        tags:
+        - name: name
+          numBookmarks: 0.8008281904610115
+          id: id
+          numBookmarksByAttachedType:
+            ai: 6.027456183070403
+            human: 1.4658129805029452
+        - name: name
+          numBookmarks: 0.8008281904610115
+          id: id
+          numBookmarksByAttachedType:
+            ai: 6.027456183070403
+            human: 1.4658129805029452
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+      required:
+      - tags
+      type: object
+    _tags__tagId__patch_request:
+      properties:
+        name:
+          type: string
+      type: object
+    Bookmark_tags_inner:
+      example:
+        name: name
+        attachedBy: ai
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        attachedBy:
+          enum:
+          - ai
+          - human
+          type: string
+      required:
+      - attachedBy
+      - id
+      - name
+      type: object
+    Bookmark_assets_inner:
+      example:
+        id: id
+        assetType: screenshot
+      properties:
+        id:
+          type: string
+        assetType:
+          enum:
+          - screenshot
+          - bannerImage
+          - fullPageArchive
+          - video
+          - bookmarkAsset
+          - unknown
+          type: string
+      required:
+      - assetType
+      - id
+      type: object
+    Tag_numBookmarksByAttachedType:
+      example:
+        ai: 6.027456183070403
+        human: 1.4658129805029452
+      properties:
+        ai:
+          type: number
+        human:
+          type: number
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
