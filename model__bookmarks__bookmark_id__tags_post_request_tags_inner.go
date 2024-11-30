@@ -19,7 +19,7 @@ var _ MappedNullable = &BookmarksBookmarkIdTagsPostRequestTagsInner{}
 
 // BookmarksBookmarkIdTagsPostRequestTagsInner struct for BookmarksBookmarkIdTagsPostRequestTagsInner
 type BookmarksBookmarkIdTagsPostRequestTagsInner struct {
-	TagId *string `json:"tagId,omitempty"`
+	TagId   *string `json:"tagId,omitempty"`
 	TagName *string `json:"tagName,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *BookmarksBookmarkIdTagsPostRequestTagsInner) SetTagName(v string) {
 }
 
 func (o BookmarksBookmarkIdTagsPostRequestTagsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,5 +158,3 @@ func (v *NullableBookmarksBookmarkIdTagsPostRequestTagsInner) UnmarshalJSON(src 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

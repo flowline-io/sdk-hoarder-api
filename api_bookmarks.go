@@ -19,12 +19,11 @@ import (
 	"strings"
 )
 
-
 // BookmarksAPIService BookmarksAPI service
 type BookmarksAPIService service
 
 type ApiBookmarksBookmarkIdDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BookmarksAPIService
 	bookmarkId string
 }
@@ -38,14 +37,14 @@ BookmarksBookmarkIdDelete Delete a bookmark
 
 Delete bookmark by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bookmarkId
- @return ApiBookmarksBookmarkIdDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param bookmarkId
+	@return ApiBookmarksBookmarkIdDeleteRequest
 */
 func (a *BookmarksAPIService) BookmarksBookmarkIdDelete(ctx context.Context, bookmarkId string) ApiBookmarksBookmarkIdDeleteRequest {
 	return ApiBookmarksBookmarkIdDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		bookmarkId: bookmarkId,
 	}
 }
@@ -53,9 +52,9 @@ func (a *BookmarksAPIService) BookmarksBookmarkIdDelete(ctx context.Context, boo
 // Execute executes the request
 func (a *BookmarksAPIService) BookmarksBookmarkIdDeleteExecute(r ApiBookmarksBookmarkIdDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksBookmarkIdDelete")
@@ -116,7 +115,7 @@ func (a *BookmarksAPIService) BookmarksBookmarkIdDeleteExecute(r ApiBookmarksBoo
 }
 
 type ApiBookmarksBookmarkIdGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BookmarksAPIService
 	bookmarkId string
 }
@@ -130,26 +129,27 @@ BookmarksBookmarkIdGet Get a single bookmark
 
 Get bookmark by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bookmarkId
- @return ApiBookmarksBookmarkIdGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param bookmarkId
+	@return ApiBookmarksBookmarkIdGetRequest
 */
 func (a *BookmarksAPIService) BookmarksBookmarkIdGet(ctx context.Context, bookmarkId string) ApiBookmarksBookmarkIdGetRequest {
 	return ApiBookmarksBookmarkIdGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		bookmarkId: bookmarkId,
 	}
 }
 
 // Execute executes the request
-//  @return Bookmark
+//
+//	@return Bookmark
 func (a *BookmarksAPIService) BookmarksBookmarkIdGetExecute(r ApiBookmarksBookmarkIdGetRequest) (*Bookmark, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Bookmark
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Bookmark
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksBookmarkIdGet")
@@ -219,9 +219,9 @@ func (a *BookmarksAPIService) BookmarksBookmarkIdGetExecute(r ApiBookmarksBookma
 }
 
 type ApiBookmarksBookmarkIdPatchRequest struct {
-	ctx context.Context
-	ApiService *BookmarksAPIService
-	bookmarkId string
+	ctx                             context.Context
+	ApiService                      *BookmarksAPIService
+	bookmarkId                      string
 	bookmarksBookmarkIdPatchRequest *BookmarksBookmarkIdPatchRequest
 }
 
@@ -240,26 +240,27 @@ BookmarksBookmarkIdPatch Update a bookmark
 
 Update bookmark by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bookmarkId
- @return ApiBookmarksBookmarkIdPatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param bookmarkId
+	@return ApiBookmarksBookmarkIdPatchRequest
 */
 func (a *BookmarksAPIService) BookmarksBookmarkIdPatch(ctx context.Context, bookmarkId string) ApiBookmarksBookmarkIdPatchRequest {
 	return ApiBookmarksBookmarkIdPatchRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		bookmarkId: bookmarkId,
 	}
 }
 
 // Execute executes the request
-//  @return BookmarksBookmarkIdPatch200Response
+//
+//	@return BookmarksBookmarkIdPatch200Response
 func (a *BookmarksAPIService) BookmarksBookmarkIdPatchExecute(r ApiBookmarksBookmarkIdPatchRequest) (*BookmarksBookmarkIdPatch200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BookmarksBookmarkIdPatch200Response
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BookmarksBookmarkIdPatch200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksBookmarkIdPatch")
@@ -331,9 +332,9 @@ func (a *BookmarksAPIService) BookmarksBookmarkIdPatchExecute(r ApiBookmarksBook
 }
 
 type ApiBookmarksBookmarkIdTagsDeleteRequest struct {
-	ctx context.Context
-	ApiService *BookmarksAPIService
-	bookmarkId string
+	ctx                                context.Context
+	ApiService                         *BookmarksAPIService
+	bookmarkId                         string
 	bookmarksBookmarkIdTagsPostRequest *BookmarksBookmarkIdTagsPostRequest
 }
 
@@ -352,26 +353,27 @@ BookmarksBookmarkIdTagsDelete Detach tags from a bookmark
 
 Detach tags from a bookmark
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bookmarkId
- @return ApiBookmarksBookmarkIdTagsDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param bookmarkId
+	@return ApiBookmarksBookmarkIdTagsDeleteRequest
 */
 func (a *BookmarksAPIService) BookmarksBookmarkIdTagsDelete(ctx context.Context, bookmarkId string) ApiBookmarksBookmarkIdTagsDeleteRequest {
 	return ApiBookmarksBookmarkIdTagsDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		bookmarkId: bookmarkId,
 	}
 }
 
 // Execute executes the request
-//  @return BookmarksBookmarkIdTagsDelete200Response
+//
+//	@return BookmarksBookmarkIdTagsDelete200Response
 func (a *BookmarksAPIService) BookmarksBookmarkIdTagsDeleteExecute(r ApiBookmarksBookmarkIdTagsDeleteRequest) (*BookmarksBookmarkIdTagsDelete200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BookmarksBookmarkIdTagsDelete200Response
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BookmarksBookmarkIdTagsDelete200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksBookmarkIdTagsDelete")
@@ -443,9 +445,9 @@ func (a *BookmarksAPIService) BookmarksBookmarkIdTagsDeleteExecute(r ApiBookmark
 }
 
 type ApiBookmarksBookmarkIdTagsPostRequest struct {
-	ctx context.Context
-	ApiService *BookmarksAPIService
-	bookmarkId string
+	ctx                                context.Context
+	ApiService                         *BookmarksAPIService
+	bookmarkId                         string
 	bookmarksBookmarkIdTagsPostRequest *BookmarksBookmarkIdTagsPostRequest
 }
 
@@ -464,26 +466,27 @@ BookmarksBookmarkIdTagsPost Attach tags to a bookmark
 
 Attach tags to a bookmark
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param bookmarkId
- @return ApiBookmarksBookmarkIdTagsPostRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param bookmarkId
+	@return ApiBookmarksBookmarkIdTagsPostRequest
 */
 func (a *BookmarksAPIService) BookmarksBookmarkIdTagsPost(ctx context.Context, bookmarkId string) ApiBookmarksBookmarkIdTagsPostRequest {
 	return ApiBookmarksBookmarkIdTagsPostRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		bookmarkId: bookmarkId,
 	}
 }
 
 // Execute executes the request
-//  @return BookmarksBookmarkIdTagsPost200Response
+//
+//	@return BookmarksBookmarkIdTagsPost200Response
 func (a *BookmarksAPIService) BookmarksBookmarkIdTagsPostExecute(r ApiBookmarksBookmarkIdTagsPostRequest) (*BookmarksBookmarkIdTagsPost200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BookmarksBookmarkIdTagsPost200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BookmarksBookmarkIdTagsPost200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksBookmarkIdTagsPost")
@@ -555,12 +558,12 @@ func (a *BookmarksAPIService) BookmarksBookmarkIdTagsPostExecute(r ApiBookmarksB
 }
 
 type ApiBookmarksGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *BookmarksAPIService
-	archived *bool
+	archived   *bool
 	favourited *bool
-	limit *float32
-	cursor *string
+	limit      *float32
+	cursor     *string
 }
 
 func (r ApiBookmarksGetRequest) Archived(archived bool) ApiBookmarksGetRequest {
@@ -592,24 +595,25 @@ BookmarksGet Get all bookmarks
 
 Get all bookmarks
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBookmarksGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBookmarksGetRequest
 */
 func (a *BookmarksAPIService) BookmarksGet(ctx context.Context) ApiBookmarksGetRequest {
 	return ApiBookmarksGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PaginatedBookmarks
+//
+//	@return PaginatedBookmarks
 func (a *BookmarksAPIService) BookmarksGetExecute(r ApiBookmarksGetRequest) (*PaginatedBookmarks, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedBookmarks
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaginatedBookmarks
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksGet")
@@ -690,8 +694,8 @@ func (a *BookmarksAPIService) BookmarksGetExecute(r ApiBookmarksGetRequest) (*Pa
 }
 
 type ApiBookmarksPostRequest struct {
-	ctx context.Context
-	ApiService *BookmarksAPIService
+	ctx                  context.Context
+	ApiService           *BookmarksAPIService
 	bookmarksPostRequest *BookmarksPostRequest
 }
 
@@ -710,24 +714,25 @@ BookmarksPost Create a new bookmark
 
 Create a new bookmark
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBookmarksPostRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBookmarksPostRequest
 */
 func (a *BookmarksAPIService) BookmarksPost(ctx context.Context) ApiBookmarksPostRequest {
 	return ApiBookmarksPostRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Bookmark
+//
+//	@return Bookmark
 func (a *BookmarksAPIService) BookmarksPostExecute(r ApiBookmarksPostRequest) (*Bookmark, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Bookmark
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Bookmark
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BookmarksAPIService.BookmarksPost")

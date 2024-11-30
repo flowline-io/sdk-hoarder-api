@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,17 +21,17 @@ var _ MappedNullable = &Bookmark{}
 
 // Bookmark struct for Bookmark
 type Bookmark struct {
-	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	Title NullableString `json:"title,omitempty"`
-	Archived bool `json:"archived"`
-	Favourited bool `json:"favourited"`
-	TaggingStatus NullableString `json:"taggingStatus"`
-	Note NullableString `json:"note,omitempty"`
-	Summary NullableString `json:"summary,omitempty"`
-	Tags []BookmarkTagsInner `json:"tags"`
-	Content BookmarksPostRequest `json:"content"`
-	Assets []BookmarkAssetsInner `json:"assets"`
+	Id            string                `json:"id"`
+	CreatedAt     string                `json:"createdAt"`
+	Title         NullableString        `json:"title,omitempty"`
+	Archived      bool                  `json:"archived"`
+	Favourited    bool                  `json:"favourited"`
+	TaggingStatus NullableString        `json:"taggingStatus"`
+	Note          NullableString        `json:"note,omitempty"`
+	Summary       NullableString        `json:"summary,omitempty"`
+	Tags          []BookmarkTagsInner   `json:"tags"`
+	Content       BookmarkContent       `json:"content"`
+	Assets        []BookmarkAssetsInner `json:"assets"`
 }
 
 type _Bookmark Bookmark
@@ -40,7 +40,7 @@ type _Bookmark Bookmark
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBookmark(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString, tags []BookmarkTagsInner, content BookmarksPostRequest, assets []BookmarkAssetsInner) *Bookmark {
+func NewBookmark(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString, tags []BookmarkTagsInner, content BookmarkContent, assets []BookmarkAssetsInner) *Bookmark {
 	this := Bookmark{}
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -141,6 +141,7 @@ func (o *Bookmark) HasTitle() bool {
 func (o *Bookmark) SetTitle(v string) {
 	o.Title.Set(&v)
 }
+
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *Bookmark) SetTitleNil() {
 	o.Title.Set(nil)
@@ -257,6 +258,7 @@ func (o *Bookmark) HasNote() bool {
 func (o *Bookmark) SetNote(v string) {
 	o.Note.Set(&v)
 }
+
 // SetNoteNil sets the value for Note to be an explicit nil
 func (o *Bookmark) SetNoteNil() {
 	o.Note.Set(nil)
@@ -299,6 +301,7 @@ func (o *Bookmark) HasSummary() bool {
 func (o *Bookmark) SetSummary(v string) {
 	o.Summary.Set(&v)
 }
+
 // SetSummaryNil sets the value for Summary to be an explicit nil
 func (o *Bookmark) SetSummaryNil() {
 	o.Summary.Set(nil)
@@ -334,9 +337,9 @@ func (o *Bookmark) SetTags(v []BookmarkTagsInner) {
 }
 
 // GetContent returns the Content field value
-func (o *Bookmark) GetContent() BookmarksPostRequest {
+func (o *Bookmark) GetContent() BookmarkContent {
 	if o == nil {
-		var ret BookmarksPostRequest
+		var ret BookmarkContent
 		return ret
 	}
 
@@ -345,7 +348,7 @@ func (o *Bookmark) GetContent() BookmarksPostRequest {
 
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
-func (o *Bookmark) GetContentOk() (*BookmarksPostRequest, bool) {
+func (o *Bookmark) GetContentOk() (*BookmarkContent, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -353,7 +356,7 @@ func (o *Bookmark) GetContentOk() (*BookmarksPostRequest, bool) {
 }
 
 // SetContent sets field value
-func (o *Bookmark) SetContent(v BookmarksPostRequest) {
+func (o *Bookmark) SetContent(v BookmarkContent) {
 	o.Content = v
 }
 
@@ -382,7 +385,7 @@ func (o *Bookmark) SetAssets(v []BookmarkAssetsInner) {
 }
 
 func (o Bookmark) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -431,10 +434,10 @@ func (o *Bookmark) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -490,5 +493,3 @@ func (v *NullableBookmark) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

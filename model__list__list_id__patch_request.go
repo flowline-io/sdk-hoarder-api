@@ -19,8 +19,8 @@ var _ MappedNullable = &ListListIdPatchRequest{}
 
 // ListListIdPatchRequest struct for ListListIdPatchRequest
 type ListListIdPatchRequest struct {
-	Name *string `json:"name,omitempty"`
-	Icon *string `json:"icon,omitempty"`
+	Name     *string        `json:"name,omitempty"`
+	Icon     *string        `json:"icon,omitempty"`
 	ParentId NullableString `json:"parentId,omitempty"`
 }
 
@@ -137,6 +137,7 @@ func (o *ListListIdPatchRequest) HasParentId() bool {
 func (o *ListListIdPatchRequest) SetParentId(v string) {
 	o.ParentId.Set(&v)
 }
+
 // SetParentIdNil sets the value for ParentId to be an explicit nil
 func (o *ListListIdPatchRequest) SetParentIdNil() {
 	o.ParentId.Set(nil)
@@ -148,7 +149,7 @@ func (o *ListListIdPatchRequest) UnsetParentId() {
 }
 
 func (o ListListIdPatchRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -204,5 +205,3 @@ func (v *NullableListListIdPatchRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

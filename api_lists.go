@@ -19,14 +19,13 @@ import (
 	"strings"
 )
 
-
 // ListsAPIService ListsAPI service
 type ListsAPIService service
 
 type ApiListListIdPatchRequest struct {
-	ctx context.Context
-	ApiService *ListsAPIService
-	listId string
+	ctx                    context.Context
+	ApiService             *ListsAPIService
+	listId                 string
 	listListIdPatchRequest *ListListIdPatchRequest
 }
 
@@ -45,26 +44,27 @@ ListListIdPatch Update a list
 
 Update list by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param listId
- @return ApiListListIdPatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param listId
+	@return ApiListListIdPatchRequest
 */
 func (a *ListsAPIService) ListListIdPatch(ctx context.Context, listId string) ApiListListIdPatchRequest {
 	return ApiListListIdPatchRequest{
 		ApiService: a,
-		ctx: ctx,
-		listId: listId,
+		ctx:        ctx,
+		listId:     listId,
 	}
 }
 
 // Execute executes the request
-//  @return List
+//
+//	@return List
 func (a *ListsAPIService) ListListIdPatchExecute(r ApiListListIdPatchRequest) (*List, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *List
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *List
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListListIdPatch")
@@ -136,7 +136,7 @@ func (a *ListsAPIService) ListListIdPatchExecute(r ApiListListIdPatchRequest) (*
 }
 
 type ApiListsGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ListsAPIService
 }
 
@@ -149,24 +149,25 @@ ListsGet Get all lists
 
 Get all lists
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListsGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListsGetRequest
 */
 func (a *ListsAPIService) ListsGet(ctx context.Context) ApiListsGetRequest {
 	return ApiListsGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ListsGet200Response
+//
+//	@return ListsGet200Response
 func (a *ListsAPIService) ListsGetExecute(r ApiListsGetRequest) (*ListsGet200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListsGet200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListsGet200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsGet")
@@ -235,9 +236,9 @@ func (a *ListsAPIService) ListsGetExecute(r ApiListsGetRequest) (*ListsGet200Res
 }
 
 type ApiListsListIdBookmarksBookmarkIdDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ListsAPIService
-	listId string
+	listId     string
 	bookmarkId string
 }
 
@@ -250,16 +251,16 @@ ListsListIdBookmarksBookmarkIdDelete Remove a bookmark from a list
 
 Remove the bookmarks from a list
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param listId
- @param bookmarkId
- @return ApiListsListIdBookmarksBookmarkIdDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param listId
+	@param bookmarkId
+	@return ApiListsListIdBookmarksBookmarkIdDeleteRequest
 */
 func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdDelete(ctx context.Context, listId string, bookmarkId string) ApiListsListIdBookmarksBookmarkIdDeleteRequest {
 	return ApiListsListIdBookmarksBookmarkIdDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		listId: listId,
+		ctx:        ctx,
+		listId:     listId,
 		bookmarkId: bookmarkId,
 	}
 }
@@ -267,9 +268,9 @@ func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdDelete(ctx context.Conte
 // Execute executes the request
 func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdDeleteExecute(r ApiListsListIdBookmarksBookmarkIdDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsListIdBookmarksBookmarkIdDelete")
@@ -331,9 +332,9 @@ func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdDeleteExecute(r ApiLists
 }
 
 type ApiListsListIdBookmarksBookmarkIdPutRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ListsAPIService
-	listId string
+	listId     string
 	bookmarkId string
 }
 
@@ -346,16 +347,16 @@ ListsListIdBookmarksBookmarkIdPut Add a bookmark to a list
 
 Add the bookmarks to a list
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param listId
- @param bookmarkId
- @return ApiListsListIdBookmarksBookmarkIdPutRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param listId
+	@param bookmarkId
+	@return ApiListsListIdBookmarksBookmarkIdPutRequest
 */
 func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdPut(ctx context.Context, listId string, bookmarkId string) ApiListsListIdBookmarksBookmarkIdPutRequest {
 	return ApiListsListIdBookmarksBookmarkIdPutRequest{
 		ApiService: a,
-		ctx: ctx,
-		listId: listId,
+		ctx:        ctx,
+		listId:     listId,
 		bookmarkId: bookmarkId,
 	}
 }
@@ -363,9 +364,9 @@ func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdPut(ctx context.Context,
 // Execute executes the request
 func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdPutExecute(r ApiListsListIdBookmarksBookmarkIdPutRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsListIdBookmarksBookmarkIdPut")
@@ -427,11 +428,11 @@ func (a *ListsAPIService) ListsListIdBookmarksBookmarkIdPutExecute(r ApiListsLis
 }
 
 type ApiListsListIdBookmarksGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ListsAPIService
-	listId string
-	limit *float32
-	cursor *string
+	listId     string
+	limit      *float32
+	cursor     *string
 }
 
 func (r ApiListsListIdBookmarksGetRequest) Limit(limit float32) ApiListsListIdBookmarksGetRequest {
@@ -453,26 +454,27 @@ ListsListIdBookmarksGet Get a bookmarks in a list
 
 Get the bookmarks in a list
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param listId
- @return ApiListsListIdBookmarksGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param listId
+	@return ApiListsListIdBookmarksGetRequest
 */
 func (a *ListsAPIService) ListsListIdBookmarksGet(ctx context.Context, listId string) ApiListsListIdBookmarksGetRequest {
 	return ApiListsListIdBookmarksGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		listId: listId,
+		ctx:        ctx,
+		listId:     listId,
 	}
 }
 
 // Execute executes the request
-//  @return PaginatedBookmarks
+//
+//	@return PaginatedBookmarks
 func (a *ListsAPIService) ListsListIdBookmarksGetExecute(r ApiListsListIdBookmarksGetRequest) (*PaginatedBookmarks, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedBookmarks
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaginatedBookmarks
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsListIdBookmarksGet")
@@ -548,9 +550,9 @@ func (a *ListsAPIService) ListsListIdBookmarksGetExecute(r ApiListsListIdBookmar
 }
 
 type ApiListsListIdDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ListsAPIService
-	listId string
+	listId     string
 }
 
 func (r ApiListsListIdDeleteRequest) Execute() (*http.Response, error) {
@@ -562,24 +564,24 @@ ListsListIdDelete Delete a list
 
 Delete list by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param listId
- @return ApiListsListIdDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param listId
+	@return ApiListsListIdDeleteRequest
 */
 func (a *ListsAPIService) ListsListIdDelete(ctx context.Context, listId string) ApiListsListIdDeleteRequest {
 	return ApiListsListIdDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		listId: listId,
+		ctx:        ctx,
+		listId:     listId,
 	}
 }
 
 // Execute executes the request
 func (a *ListsAPIService) ListsListIdDeleteExecute(r ApiListsListIdDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsListIdDelete")
@@ -640,9 +642,9 @@ func (a *ListsAPIService) ListsListIdDeleteExecute(r ApiListsListIdDeleteRequest
 }
 
 type ApiListsListIdGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *ListsAPIService
-	listId string
+	listId     string
 }
 
 func (r ApiListsListIdGetRequest) Execute() (*List, *http.Response, error) {
@@ -654,26 +656,27 @@ ListsListIdGet Get a single list
 
 Get list by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param listId
- @return ApiListsListIdGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param listId
+	@return ApiListsListIdGetRequest
 */
 func (a *ListsAPIService) ListsListIdGet(ctx context.Context, listId string) ApiListsListIdGetRequest {
 	return ApiListsListIdGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		listId: listId,
+		ctx:        ctx,
+		listId:     listId,
 	}
 }
 
 // Execute executes the request
-//  @return List
+//
+//	@return List
 func (a *ListsAPIService) ListsListIdGetExecute(r ApiListsListIdGetRequest) (*List, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *List
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *List
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsListIdGet")
@@ -743,8 +746,8 @@ func (a *ListsAPIService) ListsListIdGetExecute(r ApiListsListIdGetRequest) (*Li
 }
 
 type ApiListsPostRequest struct {
-	ctx context.Context
-	ApiService *ListsAPIService
+	ctx              context.Context
+	ApiService       *ListsAPIService
 	listsPostRequest *ListsPostRequest
 }
 
@@ -763,24 +766,25 @@ ListsPost Create a new list
 
 Create a new list
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListsPostRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListsPostRequest
 */
 func (a *ListsAPIService) ListsPost(ctx context.Context) ApiListsPostRequest {
 	return ApiListsPostRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return List
+//
+//	@return List
 func (a *ListsAPIService) ListsPostExecute(r ApiListsPostRequest) (*List, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *List
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *List
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ListsAPIService.ListsPost")

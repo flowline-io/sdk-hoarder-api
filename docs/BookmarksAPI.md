@@ -461,7 +461,7 @@ import (
 )
 
 func main() {
-	bookmarksPostRequest := openapiclient._bookmarks_post_request{BookmarksPostRequestOneOf: openapiclient.NewBookmarksPostRequestOneOf("Type_example", "Url_example")} // BookmarksPostRequest | The bookmark to create (optional)
+	bookmarksPostRequest := *openapiclient.NewBookmarksPostRequest("Type_example", "Url_example", "Text_example", "AssetType_example", "AssetId_example") // BookmarksPostRequest | The bookmark to create (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
