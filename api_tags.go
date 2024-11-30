@@ -19,12 +19,11 @@ import (
 	"strings"
 )
 
-
 // TagsAPIService TagsAPI service
 type TagsAPIService service
 
 type ApiTagsGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TagsAPIService
 }
 
@@ -37,24 +36,25 @@ TagsGet Get all tags
 
 Get all tags
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTagsGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTagsGetRequest
 */
 func (a *TagsAPIService) TagsGet(ctx context.Context) ApiTagsGetRequest {
 	return ApiTagsGetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TagsGet200Response
+//
+//	@return TagsGet200Response
 func (a *TagsAPIService) TagsGetExecute(r ApiTagsGetRequest) (*TagsGet200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TagsGet200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TagsGet200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsGet")
@@ -123,11 +123,11 @@ func (a *TagsAPIService) TagsGetExecute(r ApiTagsGetRequest) (*TagsGet200Respons
 }
 
 type ApiTagsTagIdBookmarksGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TagsAPIService
-	tagId string
-	limit *float32
-	cursor *string
+	tagId      string
+	limit      *float32
+	cursor     *string
 }
 
 func (r ApiTagsTagIdBookmarksGetRequest) Limit(limit float32) ApiTagsTagIdBookmarksGetRequest {
@@ -149,26 +149,27 @@ TagsTagIdBookmarksGet Get a bookmarks with the tag
 
 Get the bookmarks with the tag
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdBookmarksGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiTagsTagIdBookmarksGetRequest
 */
 func (a *TagsAPIService) TagsTagIdBookmarksGet(ctx context.Context, tagId string) ApiTagsTagIdBookmarksGetRequest {
 	return ApiTagsTagIdBookmarksGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
-//  @return PaginatedBookmarks
+//
+//	@return PaginatedBookmarks
 func (a *TagsAPIService) TagsTagIdBookmarksGetExecute(r ApiTagsTagIdBookmarksGetRequest) (*PaginatedBookmarks, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedBookmarks
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PaginatedBookmarks
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdBookmarksGet")
@@ -244,9 +245,9 @@ func (a *TagsAPIService) TagsTagIdBookmarksGetExecute(r ApiTagsTagIdBookmarksGet
 }
 
 type ApiTagsTagIdDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TagsAPIService
-	tagId string
+	tagId      string
 }
 
 func (r ApiTagsTagIdDeleteRequest) Execute() (*http.Response, error) {
@@ -258,24 +259,24 @@ TagsTagIdDelete Delete a tag
 
 Delete tag by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiTagsTagIdDeleteRequest
 */
 func (a *TagsAPIService) TagsTagIdDelete(ctx context.Context, tagId string) ApiTagsTagIdDeleteRequest {
 	return ApiTagsTagIdDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
 func (a *TagsAPIService) TagsTagIdDeleteExecute(r ApiTagsTagIdDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdDelete")
@@ -336,9 +337,9 @@ func (a *TagsAPIService) TagsTagIdDeleteExecute(r ApiTagsTagIdDeleteRequest) (*h
 }
 
 type ApiTagsTagIdGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TagsAPIService
-	tagId string
+	tagId      string
 }
 
 func (r ApiTagsTagIdGetRequest) Execute() (*Tag, *http.Response, error) {
@@ -350,26 +351,27 @@ TagsTagIdGet Get a single tag
 
 Get tag by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiTagsTagIdGetRequest
 */
 func (a *TagsAPIService) TagsTagIdGet(ctx context.Context, tagId string) ApiTagsTagIdGetRequest {
 	return ApiTagsTagIdGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
-//  @return Tag
+//
+//	@return Tag
 func (a *TagsAPIService) TagsTagIdGetExecute(r ApiTagsTagIdGetRequest) (*Tag, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Tag
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Tag
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdGet")
@@ -439,9 +441,9 @@ func (a *TagsAPIService) TagsTagIdGetExecute(r ApiTagsTagIdGetRequest) (*Tag, *h
 }
 
 type ApiTagsTagIdPatchRequest struct {
-	ctx context.Context
-	ApiService *TagsAPIService
-	tagId string
+	ctx                   context.Context
+	ApiService            *TagsAPIService
+	tagId                 string
 	tagsTagIdPatchRequest *TagsTagIdPatchRequest
 }
 
@@ -460,26 +462,27 @@ TagsTagIdPatch Update a tag
 
 Update tag by its id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdPatchRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param tagId
+	@return ApiTagsTagIdPatchRequest
 */
 func (a *TagsAPIService) TagsTagIdPatch(ctx context.Context, tagId string) ApiTagsTagIdPatchRequest {
 	return ApiTagsTagIdPatchRequest{
 		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
+		ctx:        ctx,
+		tagId:      tagId,
 	}
 }
 
 // Execute executes the request
-//  @return Tag
+//
+//	@return Tag
 func (a *TagsAPIService) TagsTagIdPatchExecute(r ApiTagsTagIdPatchRequest) (*Tag, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Tag
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Tag
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdPatch")

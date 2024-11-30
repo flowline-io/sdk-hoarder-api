@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &ListsPostRequest{}
 
 // ListsPostRequest struct for ListsPostRequest
 type ListsPostRequest struct {
-	Name string `json:"name"`
-	Icon string `json:"icon"`
+	Name     string         `json:"name"`
+	Icon     string         `json:"icon"`
 	ParentId NullableString `json:"parentId,omitempty"`
 }
 
@@ -127,6 +127,7 @@ func (o *ListsPostRequest) HasParentId() bool {
 func (o *ListsPostRequest) SetParentId(v string) {
 	o.ParentId.Set(&v)
 }
+
 // SetParentIdNil sets the value for ParentId to be an explicit nil
 func (o *ListsPostRequest) SetParentIdNil() {
 	o.ParentId.Set(nil)
@@ -138,7 +139,7 @@ func (o *ListsPostRequest) UnsetParentId() {
 }
 
 func (o ListsPostRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -169,10 +170,10 @@ func (o *ListsPostRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -228,5 +229,3 @@ func (v *NullableListsPostRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

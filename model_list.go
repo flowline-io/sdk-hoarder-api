@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,9 +21,9 @@ var _ MappedNullable = &List{}
 
 // List struct for List
 type List struct {
-	Id string `json:"id"`
-	Name string `json:"name"`
-	Icon string `json:"icon"`
+	Id       string         `json:"id"`
+	Name     string         `json:"name"`
+	Icon     string         `json:"icon"`
 	ParentId NullableString `json:"parentId"`
 }
 
@@ -149,7 +149,7 @@ func (o *List) SetParentId(v string) {
 }
 
 func (o List) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -181,10 +181,10 @@ func (o *List) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -240,5 +240,3 @@ func (v *NullableList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

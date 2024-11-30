@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -21,14 +21,14 @@ var _ MappedNullable = &BookmarksBookmarkIdPatch200Response{}
 
 // BookmarksBookmarkIdPatch200Response struct for BookmarksBookmarkIdPatch200Response
 type BookmarksBookmarkIdPatch200Response struct {
-	Id string `json:"id"`
-	CreatedAt string `json:"createdAt"`
-	Title NullableString `json:"title,omitempty"`
-	Archived bool `json:"archived"`
-	Favourited bool `json:"favourited"`
+	Id            string         `json:"id"`
+	CreatedAt     string         `json:"createdAt"`
+	Title         NullableString `json:"title,omitempty"`
+	Archived      bool           `json:"archived"`
+	Favourited    bool           `json:"favourited"`
 	TaggingStatus NullableString `json:"taggingStatus"`
-	Note NullableString `json:"note,omitempty"`
-	Summary NullableString `json:"summary,omitempty"`
+	Note          NullableString `json:"note,omitempty"`
+	Summary       NullableString `json:"summary,omitempty"`
 }
 
 type _BookmarksBookmarkIdPatch200Response BookmarksBookmarkIdPatch200Response
@@ -135,6 +135,7 @@ func (o *BookmarksBookmarkIdPatch200Response) HasTitle() bool {
 func (o *BookmarksBookmarkIdPatch200Response) SetTitle(v string) {
 	o.Title.Set(&v)
 }
+
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *BookmarksBookmarkIdPatch200Response) SetTitleNil() {
 	o.Title.Set(nil)
@@ -251,6 +252,7 @@ func (o *BookmarksBookmarkIdPatch200Response) HasNote() bool {
 func (o *BookmarksBookmarkIdPatch200Response) SetNote(v string) {
 	o.Note.Set(&v)
 }
+
 // SetNoteNil sets the value for Note to be an explicit nil
 func (o *BookmarksBookmarkIdPatch200Response) SetNoteNil() {
 	o.Note.Set(nil)
@@ -293,6 +295,7 @@ func (o *BookmarksBookmarkIdPatch200Response) HasSummary() bool {
 func (o *BookmarksBookmarkIdPatch200Response) SetSummary(v string) {
 	o.Summary.Set(&v)
 }
+
 // SetSummaryNil sets the value for Summary to be an explicit nil
 func (o *BookmarksBookmarkIdPatch200Response) SetSummaryNil() {
 	o.Summary.Set(nil)
@@ -304,7 +307,7 @@ func (o *BookmarksBookmarkIdPatch200Response) UnsetSummary() {
 }
 
 func (o BookmarksBookmarkIdPatch200Response) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -347,10 +350,10 @@ func (o *BookmarksBookmarkIdPatch200Response) UnmarshalJSON(data []byte) (err er
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -406,5 +409,3 @@ func (v *NullableBookmarksBookmarkIdPatch200Response) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

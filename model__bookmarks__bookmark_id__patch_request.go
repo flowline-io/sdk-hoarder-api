@@ -19,12 +19,12 @@ var _ MappedNullable = &BookmarksBookmarkIdPatchRequest{}
 
 // BookmarksBookmarkIdPatchRequest struct for BookmarksBookmarkIdPatchRequest
 type BookmarksBookmarkIdPatchRequest struct {
-	Archived *bool `json:"archived,omitempty"`
-	Favourited *bool `json:"favourited,omitempty"`
-	Summary NullableString `json:"summary,omitempty"`
-	Note *string `json:"note,omitempty"`
-	Title NullableString `json:"title,omitempty"`
-	CreatedAt *string `json:"createdAt,omitempty"`
+	Archived   *bool          `json:"archived,omitempty"`
+	Favourited *bool          `json:"favourited,omitempty"`
+	Summary    NullableString `json:"summary,omitempty"`
+	Note       *string        `json:"note,omitempty"`
+	Title      NullableString `json:"title,omitempty"`
+	CreatedAt  *string        `json:"createdAt,omitempty"`
 }
 
 // NewBookmarksBookmarkIdPatchRequest instantiates a new BookmarksBookmarkIdPatchRequest object
@@ -140,6 +140,7 @@ func (o *BookmarksBookmarkIdPatchRequest) HasSummary() bool {
 func (o *BookmarksBookmarkIdPatchRequest) SetSummary(v string) {
 	o.Summary.Set(&v)
 }
+
 // SetSummaryNil sets the value for Summary to be an explicit nil
 func (o *BookmarksBookmarkIdPatchRequest) SetSummaryNil() {
 	o.Summary.Set(nil)
@@ -214,6 +215,7 @@ func (o *BookmarksBookmarkIdPatchRequest) HasTitle() bool {
 func (o *BookmarksBookmarkIdPatchRequest) SetTitle(v string) {
 	o.Title.Set(&v)
 }
+
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *BookmarksBookmarkIdPatchRequest) SetTitleNil() {
 	o.Title.Set(nil)
@@ -257,7 +259,7 @@ func (o *BookmarksBookmarkIdPatchRequest) SetCreatedAt(v string) {
 }
 
 func (o BookmarksBookmarkIdPatchRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -322,5 +324,3 @@ func (v *NullableBookmarksBookmarkIdPatchRequest) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -13,14 +13,14 @@ Name | Type | Description | Notes
 **Note** | Pointer to **NullableString** |  | [optional] 
 **Summary** | Pointer to **NullableString** |  | [optional] 
 **Tags** | [**[]BookmarkTagsInner**](BookmarkTagsInner.md) |  | 
-**Content** | [**BookmarksPostRequest**](BookmarksPostRequest.md) |  | 
+**Content** | [**BookmarkContent**](BookmarkContent.md) |  | 
 **Assets** | [**[]BookmarkAssetsInner**](BookmarkAssetsInner.md) |  | 
 
 ## Methods
 
 ### NewBookmark
 
-`func NewBookmark(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString, tags []BookmarkTagsInner, content BookmarksPostRequest, assets []BookmarkAssetsInner, ) *Bookmark`
+`func NewBookmark(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString, tags []BookmarkTagsInner, content BookmarkContent, assets []BookmarkAssetsInner, ) *Bookmark`
 
 NewBookmark instantiates a new Bookmark object
 This constructor will assign default values to properties that have it defined,
@@ -272,20 +272,20 @@ SetTags sets Tags field to given value.
 
 ### GetContent
 
-`func (o *Bookmark) GetContent() BookmarksPostRequest`
+`func (o *Bookmark) GetContent() BookmarkContent`
 
 GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *Bookmark) GetContentOk() (*BookmarksPostRequest, bool)`
+`func (o *Bookmark) GetContentOk() (*BookmarkContent, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContent
 
-`func (o *Bookmark) SetContent(v BookmarksPostRequest)`
+`func (o *Bookmark) SetContent(v BookmarkContent)`
 
 SetContent sets Content field to given value.
 

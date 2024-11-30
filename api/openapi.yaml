@@ -571,14 +571,14 @@ components:
         content:
           crawledAt: crawledAt
           screenshotAssetId: screenshotAssetId
-          favicon: https://openapi-generator.tech
+          favicon: favicon
           imageAssetId: imageAssetId
-          imageUrl: https://openapi-generator.tech
+          imageUrl: imageUrl
           videoAssetId: videoAssetId
           description: description
           type: link
           title: title
-          url: https://openapi-generator.tech
+          url: url
           fullPageArchiveAssetId: fullPageArchiveAssetId
           htmlContent: htmlContent
         tags:
@@ -619,7 +619,7 @@ components:
             $ref: '#/components/schemas/Bookmark_tags_inner'
           type: array
         content:
-          $ref: '#/components/schemas/_bookmarks_post_request'
+          $ref: '#/components/schemas/Bookmark_content'
         assets:
           items:
             $ref: '#/components/schemas/Bookmark_assets_inner'
@@ -653,14 +653,14 @@ components:
           content:
             crawledAt: crawledAt
             screenshotAssetId: screenshotAssetId
-            favicon: https://openapi-generator.tech
+            favicon: favicon
             imageAssetId: imageAssetId
-            imageUrl: https://openapi-generator.tech
+            imageUrl: imageUrl
             videoAssetId: videoAssetId
             description: description
             type: link
             title: title
-            url: https://openapi-generator.tech
+            url: url
             fullPageArchiveAssetId: fullPageArchiveAssetId
             htmlContent: htmlContent
           tags:
@@ -686,14 +686,14 @@ components:
           content:
             crawledAt: crawledAt
             screenshotAssetId: screenshotAssetId
-            favicon: https://openapi-generator.tech
+            favicon: favicon
             imageAssetId: imageAssetId
-            imageUrl: https://openapi-generator.tech
+            imageUrl: imageUrl
             videoAssetId: videoAssetId
             description: description
             type: link
             title: title
-            url: https://openapi-generator.tech
+            url: url
             fullPageArchiveAssetId: fullPageArchiveAssetId
             htmlContent: htmlContent
           tags:
@@ -763,20 +763,7 @@ components:
       - numBookmarks
       - numBookmarksByAttachedType
       type: object
-    _bookmarks_post_request_oneOf:
-      example:
-        crawledAt: crawledAt
-        screenshotAssetId: screenshotAssetId
-        favicon: https://openapi-generator.tech
-        imageAssetId: imageAssetId
-        imageUrl: https://openapi-generator.tech
-        videoAssetId: videoAssetId
-        description: description
-        type: link
-        title: title
-        url: https://openapi-generator.tech
-        fullPageArchiveAssetId: fullPageArchiveAssetId
-        htmlContent: htmlContent
+    _bookmarks_post_request_allOf_oneOf:
       properties:
         type:
           enum:
@@ -785,43 +772,11 @@ components:
         url:
           format: uri
           type: string
-        title:
-          nullable: true
-          type: string
-        description:
-          nullable: true
-          type: string
-        imageUrl:
-          format: uri
-          nullable: true
-          type: string
-        imageAssetId:
-          nullable: true
-          type: string
-        screenshotAssetId:
-          nullable: true
-          type: string
-        fullPageArchiveAssetId:
-          nullable: true
-          type: string
-        videoAssetId:
-          nullable: true
-          type: string
-        favicon:
-          format: uri
-          nullable: true
-          type: string
-        htmlContent:
-          nullable: true
-          type: string
-        crawledAt:
-          nullable: true
-          type: string
       required:
       - type
       - url
       type: object
-    _bookmarks_post_request_oneOf_1:
+    _bookmarks_post_request_allOf_oneOf_1:
       properties:
         type:
           enum:
@@ -830,13 +785,12 @@ components:
         text:
           type: string
         sourceUrl:
-          nullable: true
           type: string
       required:
       - text
       - type
       type: object
-    _bookmarks_post_request_oneOf_2:
+    _bookmarks_post_request_allOf_oneOf_2:
       properties:
         type:
           enum:
@@ -850,31 +804,36 @@ components:
         assetId:
           type: string
         fileName:
-          nullable: true
           type: string
         sourceUrl:
-          nullable: true
           type: string
       required:
       - assetId
       - assetType
       - type
       type: object
-    _bookmarks_post_request_oneOf_3:
-      properties:
-        type:
-          enum:
-          - unknown
-          type: string
-      required:
-      - type
-      type: object
     _bookmarks_post_request:
-      oneOf:
-      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf'
-      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf_1'
-      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf_2'
-      - $ref: '#/components/schemas/_bookmarks_post_request_oneOf_3'
+      allOf:
+      - properties:
+          title:
+            maxLength: 250
+            nullable: true
+            type: string
+          archived:
+            type: boolean
+          favourited:
+            type: boolean
+          note:
+            type: string
+          summary:
+            type: string
+          createdAt:
+            type: string
+        type: object
+      - oneOf:
+        - $ref: '#/components/schemas/_bookmarks_post_request_allOf_oneOf'
+        - $ref: '#/components/schemas/_bookmarks_post_request_allOf_oneOf_1'
+        - $ref: '#/components/schemas/_bookmarks_post_request_allOf_oneOf_2'
     _bookmarks__bookmarkId__patch_request:
       properties:
         archived:
@@ -1072,6 +1031,115 @@ components:
       - id
       - name
       type: object
+    Bookmark_content_oneOf:
+      example:
+        crawledAt: crawledAt
+        screenshotAssetId: screenshotAssetId
+        favicon: favicon
+        imageAssetId: imageAssetId
+        imageUrl: imageUrl
+        videoAssetId: videoAssetId
+        description: description
+        type: link
+        title: title
+        url: url
+        fullPageArchiveAssetId: fullPageArchiveAssetId
+        htmlContent: htmlContent
+      properties:
+        type:
+          enum:
+          - link
+          type: string
+        url:
+          type: string
+        title:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        imageUrl:
+          nullable: true
+          type: string
+        imageAssetId:
+          nullable: true
+          type: string
+        screenshotAssetId:
+          nullable: true
+          type: string
+        fullPageArchiveAssetId:
+          nullable: true
+          type: string
+        videoAssetId:
+          nullable: true
+          type: string
+        favicon:
+          nullable: true
+          type: string
+        htmlContent:
+          nullable: true
+          type: string
+        crawledAt:
+          nullable: true
+          type: string
+      required:
+      - type
+      - url
+      type: object
+    Bookmark_content_oneOf_1:
+      properties:
+        type:
+          enum:
+          - text
+          type: string
+        text:
+          type: string
+        sourceUrl:
+          nullable: true
+          type: string
+      required:
+      - text
+      - type
+      type: object
+    Bookmark_content_oneOf_2:
+      properties:
+        type:
+          enum:
+          - asset
+          type: string
+        assetType:
+          enum:
+          - image
+          - pdf
+          type: string
+        assetId:
+          type: string
+        fileName:
+          nullable: true
+          type: string
+        sourceUrl:
+          nullable: true
+          type: string
+      required:
+      - assetId
+      - assetType
+      - type
+      type: object
+    Bookmark_content_oneOf_3:
+      properties:
+        type:
+          enum:
+          - unknown
+          type: string
+      required:
+      - type
+      type: object
+    Bookmark_content:
+      oneOf:
+      - $ref: '#/components/schemas/Bookmark_content_oneOf'
+      - $ref: '#/components/schemas/Bookmark_content_oneOf_1'
+      - $ref: '#/components/schemas/Bookmark_content_oneOf_2'
+      - $ref: '#/components/schemas/Bookmark_content_oneOf_3'
     Bookmark_assets_inner:
       example:
         id: id
