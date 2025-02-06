@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,10 +21,12 @@ var _ MappedNullable = &List{}
 
 // List struct for List
 type List struct {
-	Id       string         `json:"id"`
-	Name     string         `json:"name"`
-	Icon     string         `json:"icon"`
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Icon string `json:"icon"`
 	ParentId NullableString `json:"parentId"`
+	Type *string `json:"type,omitempty"`
+	Query NullableString `json:"query,omitempty"`
 }
 
 type _List List
@@ -39,6 +41,8 @@ func NewList(id string, name string, icon string, parentId NullableString) *List
 	this.Name = name
 	this.Icon = icon
 	this.ParentId = parentId
+	var type_ string = "manual"
+	this.Type = &type_
 	return &this
 }
 
@@ -47,6 +51,8 @@ func NewList(id string, name string, icon string, parentId NullableString) *List
 // but it doesn't guarantee that properties required by API are set
 func NewListWithDefaults() *List {
 	this := List{}
+	var type_ string = "manual"
+	this.Type = &type_
 	return &this
 }
 
@@ -148,8 +154,82 @@ func (o *List) SetParentId(v string) {
 	o.ParentId.Set(&v)
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *List) GetType() string {
+	if o == nil || IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *List) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *List) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *List) SetType(v string) {
+	o.Type = &v
+}
+
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *List) GetQuery() string {
+	if o == nil || IsNil(o.Query.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Query.Get()
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *List) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Query.Get(), o.Query.IsSet()
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *List) HasQuery() bool {
+	if o != nil && o.Query.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
+func (o *List) SetQuery(v string) {
+	o.Query.Set(&v)
+}
+// SetQueryNil sets the value for Query to be an explicit nil
+func (o *List) SetQueryNil() {
+	o.Query.Set(nil)
+}
+
+// UnsetQuery ensures that no value is present for Query, not even an explicit nil
+func (o *List) UnsetQuery() {
+	o.Query.Unset()
+}
+
 func (o List) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -162,6 +242,12 @@ func (o List) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["icon"] = o.Icon
 	toSerialize["parentId"] = o.ParentId.Get()
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if o.Query.IsSet() {
+		toSerialize["query"] = o.Query.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -181,10 +267,10 @@ func (o *List) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -240,3 +326,5 @@ func (v *NullableList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

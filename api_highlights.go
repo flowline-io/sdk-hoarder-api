@@ -20,164 +20,61 @@ import (
 )
 
 
-// TagsAPIService TagsAPI service
-type TagsAPIService service
+// HighlightsAPIService HighlightsAPI service
+type HighlightsAPIService service
 
-type ApiTagsGetRequest struct {
+type ApiHighlightsGetRequest struct {
 	ctx context.Context
-	ApiService *TagsAPIService
-}
-
-func (r ApiTagsGetRequest) Execute() (*TagsGet200Response, *http.Response, error) {
-	return r.ApiService.TagsGetExecute(r)
-}
-
-/*
-TagsGet Get all tags
-
-Get all tags
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTagsGetRequest
-*/
-func (a *TagsAPIService) TagsGet(ctx context.Context) ApiTagsGetRequest {
-	return ApiTagsGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return TagsGet200Response
-func (a *TagsAPIService) TagsGetExecute(r ApiTagsGetRequest) (*TagsGet200Response, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TagsGet200Response
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tags"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiTagsTagIdBookmarksGetRequest struct {
-	ctx context.Context
-	ApiService *TagsAPIService
-	tagId string
+	ApiService *HighlightsAPIService
 	limit *float32
 	cursor *string
 }
 
-func (r ApiTagsTagIdBookmarksGetRequest) Limit(limit float32) ApiTagsTagIdBookmarksGetRequest {
+func (r ApiHighlightsGetRequest) Limit(limit float32) ApiHighlightsGetRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiTagsTagIdBookmarksGetRequest) Cursor(cursor string) ApiTagsTagIdBookmarksGetRequest {
+func (r ApiHighlightsGetRequest) Cursor(cursor string) ApiHighlightsGetRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiTagsTagIdBookmarksGetRequest) Execute() (*PaginatedBookmarks, *http.Response, error) {
-	return r.ApiService.TagsTagIdBookmarksGetExecute(r)
+func (r ApiHighlightsGetRequest) Execute() (*PaginatedHighlights, *http.Response, error) {
+	return r.ApiService.HighlightsGetExecute(r)
 }
 
 /*
-TagsTagIdBookmarksGet Get a bookmarks with the tag
+HighlightsGet Get all highlights
 
-Get the bookmarks with the tag
+Get all highlights
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdBookmarksGetRequest
+ @return ApiHighlightsGetRequest
 */
-func (a *TagsAPIService) TagsTagIdBookmarksGet(ctx context.Context, tagId string) ApiTagsTagIdBookmarksGetRequest {
-	return ApiTagsTagIdBookmarksGetRequest{
+func (a *HighlightsAPIService) HighlightsGet(ctx context.Context) ApiHighlightsGetRequest {
+	return ApiHighlightsGetRequest{
 		ApiService: a,
 		ctx: ctx,
-		tagId: tagId,
 	}
 }
 
 // Execute executes the request
-//  @return PaginatedBookmarks
-func (a *TagsAPIService) TagsTagIdBookmarksGetExecute(r ApiTagsTagIdBookmarksGetRequest) (*PaginatedBookmarks, *http.Response, error) {
+//  @return PaginatedHighlights
+func (a *HighlightsAPIService) HighlightsGetExecute(r ApiHighlightsGetRequest) (*PaginatedHighlights, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedBookmarks
+		localVarReturnValue  *PaginatedHighlights
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdBookmarksGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HighlightsAPIService.HighlightsGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/tags/{tagId}/bookmarks"
-	localVarPath = strings.Replace(localVarPath, "{"+"tagId"+"}", url.PathEscape(parameterValueToString(r.tagId, "tagId")), -1)
+	localVarPath := localBasePath + "/highlights"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -243,142 +140,50 @@ func (a *TagsAPIService) TagsTagIdBookmarksGetExecute(r ApiTagsTagIdBookmarksGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTagsTagIdDeleteRequest struct {
+type ApiHighlightsHighlightIdDeleteRequest struct {
 	ctx context.Context
-	ApiService *TagsAPIService
-	tagId string
+	ApiService *HighlightsAPIService
+	highlightId string
 }
 
-func (r ApiTagsTagIdDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.TagsTagIdDeleteExecute(r)
+func (r ApiHighlightsHighlightIdDeleteRequest) Execute() (*Highlight, *http.Response, error) {
+	return r.ApiService.HighlightsHighlightIdDeleteExecute(r)
 }
 
 /*
-TagsTagIdDelete Delete a tag
+HighlightsHighlightIdDelete Delete a highlight
 
-Delete tag by its id
+Delete highlight by its id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdDeleteRequest
+ @param highlightId
+ @return ApiHighlightsHighlightIdDeleteRequest
 */
-func (a *TagsAPIService) TagsTagIdDelete(ctx context.Context, tagId string) ApiTagsTagIdDeleteRequest {
-	return ApiTagsTagIdDeleteRequest{
+func (a *HighlightsAPIService) HighlightsHighlightIdDelete(ctx context.Context, highlightId string) ApiHighlightsHighlightIdDeleteRequest {
+	return ApiHighlightsHighlightIdDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
-		tagId: tagId,
+		highlightId: highlightId,
 	}
 }
 
 // Execute executes the request
-func (a *TagsAPIService) TagsTagIdDeleteExecute(r ApiTagsTagIdDeleteRequest) (*http.Response, error) {
+//  @return Highlight
+func (a *HighlightsAPIService) HighlightsHighlightIdDeleteExecute(r ApiHighlightsHighlightIdDeleteRequest) (*Highlight, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *Highlight
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdDelete")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tags/{tagId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tagId"+"}", url.PathEscape(parameterValueToString(r.tagId, "tagId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiTagsTagIdGetRequest struct {
-	ctx context.Context
-	ApiService *TagsAPIService
-	tagId string
-}
-
-func (r ApiTagsTagIdGetRequest) Execute() (*Tag, *http.Response, error) {
-	return r.ApiService.TagsTagIdGetExecute(r)
-}
-
-/*
-TagsTagIdGet Get a single tag
-
-Get tag by its id
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdGetRequest
-*/
-func (a *TagsAPIService) TagsTagIdGet(ctx context.Context, tagId string) ApiTagsTagIdGetRequest {
-	return ApiTagsTagIdGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		tagId: tagId,
-	}
-}
-
-// Execute executes the request
-//  @return Tag
-func (a *TagsAPIService) TagsTagIdGetExecute(r ApiTagsTagIdGetRequest) (*Tag, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Tag
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HighlightsAPIService.HighlightsHighlightIdDelete")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/tags/{tagId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tagId"+"}", url.PathEscape(parameterValueToString(r.tagId, "tagId")), -1)
+	localVarPath := localBasePath + "/highlights/{highlightId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"highlightId"+"}", url.PathEscape(parameterValueToString(r.highlightId, "highlightId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -438,57 +243,160 @@ func (a *TagsAPIService) TagsTagIdGetExecute(r ApiTagsTagIdGetRequest) (*Tag, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTagsTagIdPatchRequest struct {
+type ApiHighlightsHighlightIdGetRequest struct {
 	ctx context.Context
-	ApiService *TagsAPIService
-	tagId string
-	tagsTagIdPatchRequest *TagsTagIdPatchRequest
+	ApiService *HighlightsAPIService
+	highlightId string
 }
 
-// The data to update. Only the fields you want to update need to be provided.
-func (r ApiTagsTagIdPatchRequest) TagsTagIdPatchRequest(tagsTagIdPatchRequest TagsTagIdPatchRequest) ApiTagsTagIdPatchRequest {
-	r.tagsTagIdPatchRequest = &tagsTagIdPatchRequest
-	return r
-}
-
-func (r ApiTagsTagIdPatchRequest) Execute() (*Tag, *http.Response, error) {
-	return r.ApiService.TagsTagIdPatchExecute(r)
+func (r ApiHighlightsHighlightIdGetRequest) Execute() (*Highlight, *http.Response, error) {
+	return r.ApiService.HighlightsHighlightIdGetExecute(r)
 }
 
 /*
-TagsTagIdPatch Update a tag
+HighlightsHighlightIdGet Get a single highlight
 
-Update tag by its id
+Get highlight by its id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param tagId
- @return ApiTagsTagIdPatchRequest
+ @param highlightId
+ @return ApiHighlightsHighlightIdGetRequest
 */
-func (a *TagsAPIService) TagsTagIdPatch(ctx context.Context, tagId string) ApiTagsTagIdPatchRequest {
-	return ApiTagsTagIdPatchRequest{
+func (a *HighlightsAPIService) HighlightsHighlightIdGet(ctx context.Context, highlightId string) ApiHighlightsHighlightIdGetRequest {
+	return ApiHighlightsHighlightIdGetRequest{
 		ApiService: a,
 		ctx: ctx,
-		tagId: tagId,
+		highlightId: highlightId,
 	}
 }
 
 // Execute executes the request
-//  @return Tag
-func (a *TagsAPIService) TagsTagIdPatchExecute(r ApiTagsTagIdPatchRequest) (*Tag, *http.Response, error) {
+//  @return Highlight
+func (a *HighlightsAPIService) HighlightsHighlightIdGetExecute(r ApiHighlightsHighlightIdGetRequest) (*Highlight, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Tag
+		localVarReturnValue  *Highlight
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsAPIService.TagsTagIdPatch")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HighlightsAPIService.HighlightsHighlightIdGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/tags/{tagId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tagId"+"}", url.PathEscape(parameterValueToString(r.tagId, "tagId")), -1)
+	localVarPath := localBasePath + "/highlights/{highlightId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"highlightId"+"}", url.PathEscape(parameterValueToString(r.highlightId, "highlightId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiHighlightsHighlightIdPatchRequest struct {
+	ctx context.Context
+	ApiService *HighlightsAPIService
+	highlightId string
+	highlightsHighlightIdPatchRequest *HighlightsHighlightIdPatchRequest
+}
+
+// The data to update. Only the fields you want to update need to be provided.
+func (r ApiHighlightsHighlightIdPatchRequest) HighlightsHighlightIdPatchRequest(highlightsHighlightIdPatchRequest HighlightsHighlightIdPatchRequest) ApiHighlightsHighlightIdPatchRequest {
+	r.highlightsHighlightIdPatchRequest = &highlightsHighlightIdPatchRequest
+	return r
+}
+
+func (r ApiHighlightsHighlightIdPatchRequest) Execute() (*Highlight, *http.Response, error) {
+	return r.ApiService.HighlightsHighlightIdPatchExecute(r)
+}
+
+/*
+HighlightsHighlightIdPatch Update a highlight
+
+Update highlight by its id
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param highlightId
+ @return ApiHighlightsHighlightIdPatchRequest
+*/
+func (a *HighlightsAPIService) HighlightsHighlightIdPatch(ctx context.Context, highlightId string) ApiHighlightsHighlightIdPatchRequest {
+	return ApiHighlightsHighlightIdPatchRequest{
+		ApiService: a,
+		ctx: ctx,
+		highlightId: highlightId,
+	}
+}
+
+// Execute executes the request
+//  @return Highlight
+func (a *HighlightsAPIService) HighlightsHighlightIdPatchExecute(r ApiHighlightsHighlightIdPatchRequest) (*Highlight, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Highlight
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HighlightsAPIService.HighlightsHighlightIdPatch")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/highlights/{highlightId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"highlightId"+"}", url.PathEscape(parameterValueToString(r.highlightId, "highlightId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -512,7 +420,115 @@ func (a *TagsAPIService) TagsTagIdPatchExecute(r ApiTagsTagIdPatchRequest) (*Tag
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.tagsTagIdPatchRequest
+	localVarPostBody = r.highlightsHighlightIdPatchRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiHighlightsPostRequest struct {
+	ctx context.Context
+	ApiService *HighlightsAPIService
+	highlightsPostRequest *HighlightsPostRequest
+}
+
+// The highlight to create
+func (r ApiHighlightsPostRequest) HighlightsPostRequest(highlightsPostRequest HighlightsPostRequest) ApiHighlightsPostRequest {
+	r.highlightsPostRequest = &highlightsPostRequest
+	return r
+}
+
+func (r ApiHighlightsPostRequest) Execute() (*Highlight, *http.Response, error) {
+	return r.ApiService.HighlightsPostExecute(r)
+}
+
+/*
+HighlightsPost Create a new highlight
+
+Create a new highlight
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiHighlightsPostRequest
+*/
+func (a *HighlightsAPIService) HighlightsPost(ctx context.Context) ApiHighlightsPostRequest {
+	return ApiHighlightsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return Highlight
+func (a *HighlightsAPIService) HighlightsPostExecute(r ApiHighlightsPostRequest) (*Highlight, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Highlight
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HighlightsAPIService.HighlightsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/highlights"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.highlightsPostRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

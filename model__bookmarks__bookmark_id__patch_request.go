@@ -19,12 +19,12 @@ var _ MappedNullable = &BookmarksBookmarkIdPatchRequest{}
 
 // BookmarksBookmarkIdPatchRequest struct for BookmarksBookmarkIdPatchRequest
 type BookmarksBookmarkIdPatchRequest struct {
-	Archived   *bool          `json:"archived,omitempty"`
-	Favourited *bool          `json:"favourited,omitempty"`
-	Summary    NullableString `json:"summary,omitempty"`
-	Note       *string        `json:"note,omitempty"`
-	Title      NullableString `json:"title,omitempty"`
-	CreatedAt  *string        `json:"createdAt,omitempty"`
+	Archived *bool `json:"archived,omitempty"`
+	Favourited *bool `json:"favourited,omitempty"`
+	Summary NullableString `json:"summary,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Title NullableString `json:"title,omitempty"`
+	CreatedAt NullableString `json:"createdAt,omitempty"`
 }
 
 // NewBookmarksBookmarkIdPatchRequest instantiates a new BookmarksBookmarkIdPatchRequest object
@@ -140,7 +140,6 @@ func (o *BookmarksBookmarkIdPatchRequest) HasSummary() bool {
 func (o *BookmarksBookmarkIdPatchRequest) SetSummary(v string) {
 	o.Summary.Set(&v)
 }
-
 // SetSummaryNil sets the value for Summary to be an explicit nil
 func (o *BookmarksBookmarkIdPatchRequest) SetSummaryNil() {
 	o.Summary.Set(nil)
@@ -215,7 +214,6 @@ func (o *BookmarksBookmarkIdPatchRequest) HasTitle() bool {
 func (o *BookmarksBookmarkIdPatchRequest) SetTitle(v string) {
 	o.Title.Set(&v)
 }
-
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *BookmarksBookmarkIdPatchRequest) SetTitleNil() {
 	o.Title.Set(nil)
@@ -226,40 +224,50 @@ func (o *BookmarksBookmarkIdPatchRequest) UnsetTitle() {
 	o.Title.Unset()
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BookmarksBookmarkIdPatchRequest) GetCreatedAt() string {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CreatedAt
+	return *o.CreatedAt.Get()
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BookmarksBookmarkIdPatchRequest) GetCreatedAtOk() (*string, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *BookmarksBookmarkIdPatchRequest) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && o.CreatedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+// SetCreatedAt gets a reference to the given NullableString and assigns it to the CreatedAt field.
 func (o *BookmarksBookmarkIdPatchRequest) SetCreatedAt(v string) {
-	o.CreatedAt = &v
+	o.CreatedAt.Set(&v)
+}
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *BookmarksBookmarkIdPatchRequest) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
+}
+
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *BookmarksBookmarkIdPatchRequest) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
 }
 
 func (o BookmarksBookmarkIdPatchRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -283,8 +291,8 @@ func (o BookmarksBookmarkIdPatchRequest) ToMap() (map[string]interface{}, error)
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if o.CreatedAt.IsSet() {
+		toSerialize["createdAt"] = o.CreatedAt.Get()
 	}
 	return toSerialize, nil
 }
@@ -324,3 +332,5 @@ func (v *NullableBookmarksBookmarkIdPatchRequest) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

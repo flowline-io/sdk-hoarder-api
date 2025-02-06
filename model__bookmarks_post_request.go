@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,19 +21,20 @@ var _ MappedNullable = &BookmarksPostRequest{}
 
 // BookmarksPostRequest struct for BookmarksPostRequest
 type BookmarksPostRequest struct {
-	Title      NullableString `json:"title,omitempty"`
-	Archived   *bool          `json:"archived,omitempty"`
-	Favourited *bool          `json:"favourited,omitempty"`
-	Note       *string        `json:"note,omitempty"`
-	Summary    *string        `json:"summary,omitempty"`
-	CreatedAt  *string        `json:"createdAt,omitempty"`
-	Type       string         `json:"type"`
-	Url        string         `json:"url"`
-	Text       string         `json:"text"`
-	SourceUrl  *string        `json:"sourceUrl,omitempty"`
-	AssetType  string         `json:"assetType"`
-	AssetId    string         `json:"assetId"`
-	FileName   *string        `json:"fileName,omitempty"`
+	Title NullableString `json:"title,omitempty"`
+	Archived *bool `json:"archived,omitempty"`
+	Favourited *bool `json:"favourited,omitempty"`
+	Note *string `json:"note,omitempty"`
+	Summary *string `json:"summary,omitempty"`
+	CreatedAt NullableString `json:"createdAt,omitempty"`
+	Type string `json:"type"`
+	Url string `json:"url"`
+	PrecrawledArchiveId *string `json:"precrawledArchiveId,omitempty"`
+	Text string `json:"text"`
+	SourceUrl *string `json:"sourceUrl,omitempty"`
+	AssetType string `json:"assetType"`
+	AssetId string `json:"assetId"`
+	FileName *string `json:"fileName,omitempty"`
 }
 
 type _BookmarksPostRequest BookmarksPostRequest
@@ -92,7 +93,6 @@ func (o *BookmarksPostRequest) HasTitle() bool {
 func (o *BookmarksPostRequest) SetTitle(v string) {
 	o.Title.Set(&v)
 }
-
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *BookmarksPostRequest) SetTitleNil() {
 	o.Title.Set(nil)
@@ -231,36 +231,46 @@ func (o *BookmarksPostRequest) SetSummary(v string) {
 	o.Summary = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BookmarksPostRequest) GetCreatedAt() string {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CreatedAt
+	return *o.CreatedAt.Get()
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BookmarksPostRequest) GetCreatedAtOk() (*string, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *BookmarksPostRequest) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
+	if o != nil && o.CreatedAt.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+// SetCreatedAt gets a reference to the given NullableString and assigns it to the CreatedAt field.
 func (o *BookmarksPostRequest) SetCreatedAt(v string) {
-	o.CreatedAt = &v
+	o.CreatedAt.Set(&v)
+}
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *BookmarksPostRequest) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
+}
+
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *BookmarksPostRequest) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
 }
 
 // GetType returns the Type field value
@@ -309,6 +319,38 @@ func (o *BookmarksPostRequest) GetUrlOk() (*string, bool) {
 // SetUrl sets field value
 func (o *BookmarksPostRequest) SetUrl(v string) {
 	o.Url = v
+}
+
+// GetPrecrawledArchiveId returns the PrecrawledArchiveId field value if set, zero value otherwise.
+func (o *BookmarksPostRequest) GetPrecrawledArchiveId() string {
+	if o == nil || IsNil(o.PrecrawledArchiveId) {
+		var ret string
+		return ret
+	}
+	return *o.PrecrawledArchiveId
+}
+
+// GetPrecrawledArchiveIdOk returns a tuple with the PrecrawledArchiveId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BookmarksPostRequest) GetPrecrawledArchiveIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PrecrawledArchiveId) {
+		return nil, false
+	}
+	return o.PrecrawledArchiveId, true
+}
+
+// HasPrecrawledArchiveId returns a boolean if a field has been set.
+func (o *BookmarksPostRequest) HasPrecrawledArchiveId() bool {
+	if o != nil && !IsNil(o.PrecrawledArchiveId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrecrawledArchiveId gets a reference to the given string and assigns it to the PrecrawledArchiveId field.
+func (o *BookmarksPostRequest) SetPrecrawledArchiveId(v string) {
+	o.PrecrawledArchiveId = &v
 }
 
 // GetText returns the Text field value
@@ -448,7 +490,7 @@ func (o *BookmarksPostRequest) SetFileName(v string) {
 }
 
 func (o BookmarksPostRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -472,11 +514,14 @@ func (o BookmarksPostRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Summary) {
 		toSerialize["summary"] = o.Summary
 	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["createdAt"] = o.CreatedAt
+	if o.CreatedAt.IsSet() {
+		toSerialize["createdAt"] = o.CreatedAt.Get()
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["url"] = o.Url
+	if !IsNil(o.PrecrawledArchiveId) {
+		toSerialize["precrawledArchiveId"] = o.PrecrawledArchiveId
+	}
 	toSerialize["text"] = o.Text
 	if !IsNil(o.SourceUrl) {
 		toSerialize["sourceUrl"] = o.SourceUrl
@@ -506,10 +551,10 @@ func (o *BookmarksPostRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -565,3 +610,5 @@ func (v *NullableBookmarksPostRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

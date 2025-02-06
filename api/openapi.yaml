@@ -74,6 +74,43 @@ paths:
       summary: Create a new bookmark
       tags:
       - Bookmarks
+  /bookmarks/search:
+    get:
+      description: Search bookmarks
+      parameters:
+      - explode: true
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          $ref: '#/components/schemas/Cursor'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookmarks'
+          description: Object with the search results.
+      security:
+      - bearerAuth: []
+      summary: Search bookmarks
+      tags:
+      - Bookmarks
   /bookmarks/{bookmarkId}:
     delete:
       description: Delete bookmark by its id
@@ -201,6 +238,115 @@ paths:
       summary: Attach tags to a bookmark
       tags:
       - Bookmarks
+  /bookmarks/{bookmarkId}/highlights:
+    get:
+      description: Get highlights of a bookmark
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_bookmarks__bookmarkId__highlights_get_200_response'
+          description: The list of highlights
+      security:
+      - bearerAuth: []
+      summary: Get highlights of a bookmark
+      tags:
+      - Bookmarks
+  /bookmarks/{bookmarkId}/assets:
+    post:
+      description: Attach a new asset to a bookmark
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_bookmarks__bookmarkId__assets_post_request'
+        description: The asset to attach
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_bookmarks__bookmarkId__assets_post_request'
+          description: The attached asset
+      security:
+      - bearerAuth: []
+      summary: Attach asset
+      tags:
+      - Bookmarks
+  /bookmarks/{bookmarkId}/assets/{assetId}:
+    delete:
+      description: Detach an asset from a bookmark
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      - explode: false
+        in: path
+        name: assetId
+        required: true
+        schema:
+          $ref: '#/components/schemas/AssetId'
+        style: simple
+      responses:
+        "204":
+          description: No content - asset was detached successfully
+      security:
+      - bearerAuth: []
+      summary: Detach asset
+      tags:
+      - Bookmarks
+    put:
+      description: Replace an existing asset with a new one
+      parameters:
+      - explode: false
+        in: path
+        name: bookmarkId
+        required: true
+        schema:
+          $ref: '#/components/schemas/BookmarkId'
+        style: simple
+      - explode: false
+        in: path
+        name: assetId
+        required: true
+        schema:
+          $ref: '#/components/schemas/AssetId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_bookmarks__bookmarkId__assets__assetId__put_request'
+        description: The new asset to replace with
+      responses:
+        "204":
+          description: No content - asset was replaced successfully
+      security:
+      - bearerAuth: []
+      summary: Replace asset
+      tags:
+      - Bookmarks
   /lists:
     get:
       description: Get all lists
@@ -277,7 +423,6 @@ paths:
       summary: Get a single list
       tags:
       - Lists
-  /list/{listId}:
     patch:
       description: Update list by its id
       parameters:
@@ -292,7 +437,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/_list__listId__patch_request'
+              $ref: '#/components/schemas/_lists__listId__patch_request'
         description: The data to update. Only the fields you want to update need to
           be provided.
       responses:
@@ -517,8 +662,140 @@ paths:
       summary: Get a bookmarks with the tag
       tags:
       - Tags
+  /highlights:
+    get:
+      description: Get all highlights
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          $ref: '#/components/schemas/Cursor'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedHighlights'
+          description: Object with all highlights data.
+      security:
+      - bearerAuth: []
+      summary: Get all highlights
+      tags:
+      - Highlights
+    post:
+      description: Create a new highlight
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_highlights_post_request'
+        description: The highlight to create
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Highlight'
+          description: The created highlight
+      security:
+      - bearerAuth: []
+      summary: Create a new highlight
+      tags:
+      - Highlights
+  /highlights/{highlightId}:
+    delete:
+      description: Delete highlight by its id
+      parameters:
+      - explode: false
+        in: path
+        name: highlightId
+        required: true
+        schema:
+          $ref: '#/components/schemas/HighlightId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Highlight'
+          description: The deleted highlight
+      security:
+      - bearerAuth: []
+      summary: Delete a highlight
+      tags:
+      - Highlights
+    get:
+      description: Get highlight by its id
+      parameters:
+      - explode: false
+        in: path
+        name: highlightId
+        required: true
+        schema:
+          $ref: '#/components/schemas/HighlightId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Highlight'
+          description: Object with highlight data.
+      security:
+      - bearerAuth: []
+      summary: Get a single highlight
+      tags:
+      - Highlights
+    patch:
+      description: Update highlight by its id
+      parameters:
+      - explode: false
+        in: path
+        name: highlightId
+        required: true
+        schema:
+          $ref: '#/components/schemas/HighlightId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/_highlights__highlightId__patch_request'
+        description: The data to update. Only the fields you want to update need to
+          be provided.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Highlight'
+          description: The updated highlight
+      security:
+      - bearerAuth: []
+      summary: Update a highlight
+      tags:
+      - Highlights
 components:
   parameters:
+    AssetId:
+      explode: false
+      in: path
+      name: assetId
+      required: true
+      schema:
+        $ref: '#/components/schemas/AssetId'
+      style: simple
     BookmarkId:
       explode: false
       in: path
@@ -543,7 +820,18 @@ components:
       schema:
         $ref: '#/components/schemas/TagId'
       style: simple
+    HighlightId:
+      explode: false
+      in: path
+      name: highlightId
+      required: true
+      schema:
+        $ref: '#/components/schemas/HighlightId'
+      style: simple
   schemas:
+    AssetId:
+      example: ieidlxygmwj87oxz5hxttoc8
+      type: string
     BookmarkId:
       example: ieidlxygmwj87oxz5hxttoc8
       type: string
@@ -551,6 +839,9 @@ components:
       example: ieidlxygmwj87oxz5hxttoc8
       type: string
     TagId:
+      example: ieidlxygmwj87oxz5hxttoc8
+      type: string
+    HighlightId:
       example: ieidlxygmwj87oxz5hxttoc8
       type: string
     Bookmark:
@@ -566,21 +857,23 @@ components:
         - id: id
           assetType: screenshot
         favourited: true
+        modifiedAt: modifiedAt
         id: id
         title: title
         content:
-          crawledAt: crawledAt
-          screenshotAssetId: screenshotAssetId
           favicon: favicon
-          imageAssetId: imageAssetId
-          imageUrl: imageUrl
           videoAssetId: videoAssetId
           description: description
+          precrawledArchiveAssetId: precrawledArchiveAssetId
           type: link
           title: title
           url: url
           fullPageArchiveAssetId: fullPageArchiveAssetId
           htmlContent: htmlContent
+          crawledAt: crawledAt
+          screenshotAssetId: screenshotAssetId
+          imageAssetId: imageAssetId
+          imageUrl: imageUrl
         tags:
         - name: name
           attachedBy: ai
@@ -592,6 +885,9 @@ components:
         id:
           type: string
         createdAt:
+          type: string
+        modifiedAt:
+          nullable: true
           type: string
         title:
           maxLength: 250
@@ -622,7 +918,7 @@ components:
           $ref: '#/components/schemas/Bookmark_content'
         assets:
           items:
-            $ref: '#/components/schemas/Bookmark_assets_inner'
+            $ref: '#/components/schemas/_bookmarks__bookmarkId__assets_post_request'
           type: array
       required:
       - archived
@@ -631,6 +927,7 @@ components:
       - createdAt
       - favourited
       - id
+      - modifiedAt
       - taggingStatus
       - tags
       type: object
@@ -648,21 +945,23 @@ components:
           - id: id
             assetType: screenshot
           favourited: true
+          modifiedAt: modifiedAt
           id: id
           title: title
           content:
-            crawledAt: crawledAt
-            screenshotAssetId: screenshotAssetId
             favicon: favicon
-            imageAssetId: imageAssetId
-            imageUrl: imageUrl
             videoAssetId: videoAssetId
             description: description
+            precrawledArchiveAssetId: precrawledArchiveAssetId
             type: link
             title: title
             url: url
             fullPageArchiveAssetId: fullPageArchiveAssetId
             htmlContent: htmlContent
+            crawledAt: crawledAt
+            screenshotAssetId: screenshotAssetId
+            imageAssetId: imageAssetId
+            imageUrl: imageUrl
           tags:
           - name: name
             attachedBy: ai
@@ -681,21 +980,23 @@ components:
           - id: id
             assetType: screenshot
           favourited: true
+          modifiedAt: modifiedAt
           id: id
           title: title
           content:
-            crawledAt: crawledAt
-            screenshotAssetId: screenshotAssetId
             favicon: favicon
-            imageAssetId: imageAssetId
-            imageUrl: imageUrl
             videoAssetId: videoAssetId
             description: description
+            precrawledArchiveAssetId: precrawledArchiveAssetId
             type: link
             title: title
             url: url
             fullPageArchiveAssetId: fullPageArchiveAssetId
             htmlContent: htmlContent
+            crawledAt: crawledAt
+            screenshotAssetId: screenshotAssetId
+            imageAssetId: imageAssetId
+            imageUrl: imageUrl
           tags:
           - name: name
             attachedBy: ai
@@ -718,11 +1019,61 @@ components:
       type: object
     Cursor:
       type: string
+    Highlight:
+      example:
+        note: note
+        createdAt: createdAt
+        bookmarkId: bookmarkId
+        endOffset: 6.027456183070403
+        startOffset: 0.8008281904610115
+        color: yellow
+        text: text
+        id: id
+        userId: userId
+      properties:
+        bookmarkId:
+          type: string
+        startOffset:
+          type: number
+        endOffset:
+          type: number
+        color:
+          default: yellow
+          enum:
+          - yellow
+          - red
+          - green
+          - blue
+          type: string
+        text:
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        id:
+          type: string
+        userId:
+          type: string
+        createdAt:
+          type: string
+      required:
+      - bookmarkId
+      - createdAt
+      - endOffset
+      - id
+      - note
+      - startOffset
+      - text
+      - userId
+      type: object
     List:
       example:
+        query: query
         name: name
         icon: icon
         id: id
+        type: manual
         parentId: parentId
       properties:
         id:
@@ -732,6 +1083,15 @@ components:
         icon:
           type: string
         parentId:
+          nullable: true
+          type: string
+        type:
+          default: manual
+          enum:
+          - manual
+          - smart
+          type: string
+        query:
           nullable: true
           type: string
       required:
@@ -763,6 +1123,40 @@ components:
       - numBookmarks
       - numBookmarksByAttachedType
       type: object
+    PaginatedHighlights:
+      example:
+        nextCursor: nextCursor
+        highlights:
+        - note: note
+          createdAt: createdAt
+          bookmarkId: bookmarkId
+          endOffset: 6.027456183070403
+          startOffset: 0.8008281904610115
+          color: yellow
+          text: text
+          id: id
+          userId: userId
+        - note: note
+          createdAt: createdAt
+          bookmarkId: bookmarkId
+          endOffset: 6.027456183070403
+          startOffset: 0.8008281904610115
+          color: yellow
+          text: text
+          id: id
+          userId: userId
+      properties:
+        highlights:
+          items:
+            $ref: '#/components/schemas/Highlight'
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+      required:
+      - highlights
+      - nextCursor
+      type: object
     _bookmarks_post_request_allOf_oneOf:
       properties:
         type:
@@ -771,6 +1165,8 @@ components:
           type: string
         url:
           format: uri
+          type: string
+        precrawledArchiveId:
           type: string
       required:
       - type
@@ -828,6 +1224,7 @@ components:
           summary:
             type: string
           createdAt:
+            nullable: true
             type: string
         type: object
       - oneOf:
@@ -850,6 +1247,7 @@ components:
           nullable: true
           type: string
         createdAt:
+          nullable: true
           type: string
       type: object
     _bookmarks__bookmarkId__patch_200_response:
@@ -860,12 +1258,16 @@ components:
         taggingStatus: success
         note: note
         favourited: true
+        modifiedAt: modifiedAt
         id: id
         title: title
       properties:
         id:
           type: string
         createdAt:
+          type: string
+        modifiedAt:
+          nullable: true
           type: string
         title:
           maxLength: 250
@@ -893,6 +1295,7 @@ components:
       - createdAt
       - favourited
       - id
+      - modifiedAt
       - taggingStatus
       type: object
     _bookmarks__bookmarkId__tags_post_request_tags_inner:
@@ -937,16 +1340,77 @@ components:
       required:
       - detached
       type: object
+    _bookmarks__bookmarkId__highlights_get_200_response:
+      example:
+        highlights:
+        - note: note
+          createdAt: createdAt
+          bookmarkId: bookmarkId
+          endOffset: 6.027456183070403
+          startOffset: 0.8008281904610115
+          color: yellow
+          text: text
+          id: id
+          userId: userId
+        - note: note
+          createdAt: createdAt
+          bookmarkId: bookmarkId
+          endOffset: 6.027456183070403
+          startOffset: 0.8008281904610115
+          color: yellow
+          text: text
+          id: id
+          userId: userId
+      properties:
+        highlights:
+          items:
+            $ref: '#/components/schemas/Highlight'
+          type: array
+      required:
+      - highlights
+      type: object
+    _bookmarks__bookmarkId__assets_post_request:
+      example:
+        id: id
+        assetType: screenshot
+      properties:
+        id:
+          type: string
+        assetType:
+          enum:
+          - screenshot
+          - bannerImage
+          - fullPageArchive
+          - video
+          - bookmarkAsset
+          - precrawledArchive
+          - unknown
+          type: string
+      required:
+      - assetType
+      - id
+      type: object
+    _bookmarks__bookmarkId__assets__assetId__put_request:
+      properties:
+        assetId:
+          type: string
+      required:
+      - assetId
+      type: object
     _lists_get_200_response:
       example:
         lists:
-        - name: name
+        - query: query
+          name: name
           icon: icon
           id: id
+          type: manual
           parentId: parentId
-        - name: name
+        - query: query
+          name: name
           icon: icon
           id: id
+          type: manual
           parentId: parentId
       properties:
         lists:
@@ -964,6 +1428,15 @@ components:
           type: string
         icon:
           type: string
+        type:
+          default: manual
+          enum:
+          - manual
+          - smart
+          type: string
+        query:
+          minLength: 1
+          type: string
         parentId:
           nullable: true
           type: string
@@ -971,7 +1444,7 @@ components:
       - icon
       - name
       type: object
-    _list__listId__patch_request:
+    _lists__listId__patch_request:
       properties:
         name:
           maxLength: 40
@@ -981,6 +1454,9 @@ components:
           type: string
         parentId:
           nullable: true
+          type: string
+        query:
+          minLength: 1
           type: string
       type: object
     _tags_get_200_response:
@@ -1011,6 +1487,45 @@ components:
         name:
           type: string
       type: object
+    _highlights_post_request:
+      properties:
+        bookmarkId:
+          type: string
+        startOffset:
+          type: number
+        endOffset:
+          type: number
+        color:
+          default: yellow
+          enum:
+          - yellow
+          - red
+          - green
+          - blue
+          type: string
+        text:
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+      required:
+      - bookmarkId
+      - endOffset
+      - note
+      - startOffset
+      - text
+      type: object
+    _highlights__highlightId__patch_request:
+      properties:
+        color:
+          enum:
+          - yellow
+          - red
+          - green
+          - blue
+          type: string
+      type: object
     Bookmark_tags_inner:
       example:
         name: name
@@ -1033,18 +1548,19 @@ components:
       type: object
     Bookmark_content_oneOf:
       example:
-        crawledAt: crawledAt
-        screenshotAssetId: screenshotAssetId
         favicon: favicon
-        imageAssetId: imageAssetId
-        imageUrl: imageUrl
         videoAssetId: videoAssetId
         description: description
+        precrawledArchiveAssetId: precrawledArchiveAssetId
         type: link
         title: title
         url: url
         fullPageArchiveAssetId: fullPageArchiveAssetId
         htmlContent: htmlContent
+        crawledAt: crawledAt
+        screenshotAssetId: screenshotAssetId
+        imageAssetId: imageAssetId
+        imageUrl: imageUrl
       properties:
         type:
           enum:
@@ -1068,6 +1584,9 @@ components:
           nullable: true
           type: string
         fullPageArchiveAssetId:
+          nullable: true
+          type: string
+        precrawledArchiveAssetId:
           nullable: true
           type: string
         videoAssetId:
@@ -1140,26 +1659,6 @@ components:
       - $ref: '#/components/schemas/Bookmark_content_oneOf_1'
       - $ref: '#/components/schemas/Bookmark_content_oneOf_2'
       - $ref: '#/components/schemas/Bookmark_content_oneOf_3'
-    Bookmark_assets_inner:
-      example:
-        id: id
-        assetType: screenshot
-      properties:
-        id:
-          type: string
-        assetType:
-          enum:
-          - screenshot
-          - bannerImage
-          - fullPageArchive
-          - video
-          - bookmarkAsset
-          - unknown
-          type: string
-      required:
-      - assetType
-      - id
-      type: object
     Tag_numBookmarksByAttachedType:
       example:
         ai: 6.027456183070403

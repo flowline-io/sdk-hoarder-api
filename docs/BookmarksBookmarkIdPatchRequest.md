@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Summary** | Pointer to **NullableString** |  | [optional] 
 **Note** | Pointer to **string** |  | [optional] 
 **Title** | Pointer to **NullableString** |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -200,6 +200,16 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### SetCreatedAtNil
+
+`func (o *BookmarksBookmarkIdPatchRequest) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *BookmarksBookmarkIdPatchRequest) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Icon** | **string** |  | 
 **ParentId** | **NullableString** |  | 
+**Type** | Pointer to **string** |  | [optional] [default to "manual"]
+**Query** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -118,6 +120,66 @@ SetParentId sets ParentId field to given value.
 `func (o *List) UnsetParentId()`
 
 UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
+### GetType
+
+`func (o *List) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *List) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *List) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *List) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetQuery
+
+`func (o *List) GetQuery() string`
+
+GetQuery returns the Query field if non-nil, zero value otherwise.
+
+### GetQueryOk
+
+`func (o *List) GetQueryOk() (*string, bool)`
+
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *List) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
+
+### HasQuery
+
+`func (o *List) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
+
+### SetQueryNil
+
+`func (o *List) SetQueryNil(b bool)`
+
+ SetQueryNil sets the value for Query to be an explicit nil
+
+### UnsetQuery
+`func (o *List) UnsetQuery()`
+
+UnsetQuery ensures that no value is present for Query, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

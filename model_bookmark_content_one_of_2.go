@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,10 +21,10 @@ var _ MappedNullable = &BookmarkContentOneOf2{}
 
 // BookmarkContentOneOf2 struct for BookmarkContentOneOf2
 type BookmarkContentOneOf2 struct {
-	Type      string         `json:"type"`
-	AssetType string         `json:"assetType"`
-	AssetId   string         `json:"assetId"`
-	FileName  NullableString `json:"fileName,omitempty"`
+	Type string `json:"type"`
+	AssetType string `json:"assetType"`
+	AssetId string `json:"assetId"`
+	FileName NullableString `json:"fileName,omitempty"`
 	SourceUrl NullableString `json:"sourceUrl,omitempty"`
 }
 
@@ -154,7 +154,6 @@ func (o *BookmarkContentOneOf2) HasFileName() bool {
 func (o *BookmarkContentOneOf2) SetFileName(v string) {
 	o.FileName.Set(&v)
 }
-
 // SetFileNameNil sets the value for FileName to be an explicit nil
 func (o *BookmarkContentOneOf2) SetFileNameNil() {
 	o.FileName.Set(nil)
@@ -197,7 +196,6 @@ func (o *BookmarkContentOneOf2) HasSourceUrl() bool {
 func (o *BookmarkContentOneOf2) SetSourceUrl(v string) {
 	o.SourceUrl.Set(&v)
 }
-
 // SetSourceUrlNil sets the value for SourceUrl to be an explicit nil
 func (o *BookmarkContentOneOf2) SetSourceUrlNil() {
 	o.SourceUrl.Set(nil)
@@ -209,7 +207,7 @@ func (o *BookmarkContentOneOf2) UnsetSourceUrl() {
 }
 
 func (o BookmarkContentOneOf2) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -245,10 +243,10 @@ func (o *BookmarkContentOneOf2) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -304,3 +302,5 @@ func (v *NullableBookmarkContentOneOf2) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
 **Url** | **string** |  | 
+**PrecrawledArchiveId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+
+### GetPrecrawledArchiveId
+
+`func (o *BookmarksPostRequestAllOfOneOf) GetPrecrawledArchiveId() string`
+
+GetPrecrawledArchiveId returns the PrecrawledArchiveId field if non-nil, zero value otherwise.
+
+### GetPrecrawledArchiveIdOk
+
+`func (o *BookmarksPostRequestAllOfOneOf) GetPrecrawledArchiveIdOk() (*string, bool)`
+
+GetPrecrawledArchiveIdOk returns a tuple with the PrecrawledArchiveId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrecrawledArchiveId
+
+`func (o *BookmarksPostRequestAllOfOneOf) SetPrecrawledArchiveId(v string)`
+
+SetPrecrawledArchiveId sets PrecrawledArchiveId field to given value.
+
+### HasPrecrawledArchiveId
+
+`func (o *BookmarksPostRequestAllOfOneOf) HasPrecrawledArchiveId() bool`
+
+HasPrecrawledArchiveId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

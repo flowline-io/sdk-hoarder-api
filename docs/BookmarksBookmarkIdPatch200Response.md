@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **CreatedAt** | **string** |  | 
+**ModifiedAt** | **NullableString** |  | 
 **Title** | Pointer to **NullableString** |  | [optional] 
 **Archived** | **bool** |  | 
 **Favourited** | **bool** |  | 
@@ -17,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewBookmarksBookmarkIdPatch200Response
 
-`func NewBookmarksBookmarkIdPatch200Response(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString, ) *BookmarksBookmarkIdPatch200Response`
+`func NewBookmarksBookmarkIdPatch200Response(id string, createdAt string, modifiedAt NullableString, archived bool, favourited bool, taggingStatus NullableString, ) *BookmarksBookmarkIdPatch200Response`
 
 NewBookmarksBookmarkIdPatch200Response instantiates a new BookmarksBookmarkIdPatch200Response object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +73,36 @@ and a boolean to check if the value has been set.
 SetCreatedAt sets CreatedAt field to given value.
 
 
+### GetModifiedAt
+
+`func (o *BookmarksBookmarkIdPatch200Response) GetModifiedAt() string`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *BookmarksBookmarkIdPatch200Response) GetModifiedAtOk() (*string, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *BookmarksBookmarkIdPatch200Response) SetModifiedAt(v string)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+
+### SetModifiedAtNil
+
+`func (o *BookmarksBookmarkIdPatch200Response) SetModifiedAtNil(b bool)`
+
+ SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
+
+### UnsetModifiedAt
+`func (o *BookmarksBookmarkIdPatch200Response) UnsetModifiedAt()`
+
+UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
 ### GetTitle
 
 `func (o *BookmarksBookmarkIdPatch200Response) GetTitle() string`

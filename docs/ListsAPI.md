@@ -4,87 +4,15 @@ All URIs are relative to *https://try.hoarder.app/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListListIdPatch**](ListsAPI.md#ListListIdPatch) | **Patch** /list/{listId} | Update a list
 [**ListsGet**](ListsAPI.md#ListsGet) | **Get** /lists | Get all lists
 [**ListsListIdBookmarksBookmarkIdDelete**](ListsAPI.md#ListsListIdBookmarksBookmarkIdDelete) | **Delete** /lists/{listId}/bookmarks/{bookmarkId} | Remove a bookmark from a list
 [**ListsListIdBookmarksBookmarkIdPut**](ListsAPI.md#ListsListIdBookmarksBookmarkIdPut) | **Put** /lists/{listId}/bookmarks/{bookmarkId} | Add a bookmark to a list
 [**ListsListIdBookmarksGet**](ListsAPI.md#ListsListIdBookmarksGet) | **Get** /lists/{listId}/bookmarks | Get a bookmarks in a list
 [**ListsListIdDelete**](ListsAPI.md#ListsListIdDelete) | **Delete** /lists/{listId} | Delete a list
 [**ListsListIdGet**](ListsAPI.md#ListsListIdGet) | **Get** /lists/{listId} | Get a single list
+[**ListsListIdPatch**](ListsAPI.md#ListsListIdPatch) | **Patch** /lists/{listId} | Update a list
 [**ListsPost**](ListsAPI.md#ListsPost) | **Post** /lists | Create a new list
 
-
-
-## ListListIdPatch
-
-> List ListListIdPatch(ctx, listId).ListListIdPatchRequest(listListIdPatchRequest).Execute()
-
-Update a list
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	listId := "listId_example" // string | 
-	listListIdPatchRequest := *openapiclient.NewListListIdPatchRequest() // ListListIdPatchRequest | The data to update. Only the fields you want to update need to be provided. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ListsAPI.ListListIdPatch(context.Background(), listId).ListListIdPatchRequest(listListIdPatchRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ListsAPI.ListListIdPatch``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListListIdPatch`: List
-	fmt.Fprintf(os.Stdout, "Response from `ListsAPI.ListListIdPatch`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**listId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListListIdPatchRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **listListIdPatchRequest** | [**ListListIdPatchRequest**](ListListIdPatchRequest.md) | The data to update. Only the fields you want to update need to be provided. | 
-
-### Return type
-
-[**List**](List.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## ListsGet
@@ -495,6 +423,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListsListIdPatch
+
+> List ListsListIdPatch(ctx, listId).ListsListIdPatchRequest(listsListIdPatchRequest).Execute()
+
+Update a list
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	listId := "listId_example" // string | 
+	listsListIdPatchRequest := *openapiclient.NewListsListIdPatchRequest() // ListsListIdPatchRequest | The data to update. Only the fields you want to update need to be provided. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ListsAPI.ListsListIdPatch(context.Background(), listId).ListsListIdPatchRequest(listsListIdPatchRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ListsAPI.ListsListIdPatch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListsListIdPatch`: List
+	fmt.Fprintf(os.Stdout, "Response from `ListsAPI.ListsListIdPatch`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**listId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListsListIdPatchRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **listsListIdPatchRequest** | [**ListsListIdPatchRequest**](ListsListIdPatchRequest.md) | The data to update. Only the fields you want to update need to be provided. | 
+
+### Return type
+
+[**List**](List.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

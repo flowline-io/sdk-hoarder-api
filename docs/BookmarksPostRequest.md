@@ -9,9 +9,10 @@ Name | Type | Description | Notes
 **Favourited** | Pointer to **bool** |  | [optional] 
 **Note** | Pointer to **string** |  | [optional] 
 **Summary** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **NullableString** |  | [optional] 
 **Type** | **string** |  | 
 **Url** | **string** |  | 
+**PrecrawledArchiveId** | Pointer to **string** |  | [optional] 
 **Text** | **string** |  | 
 **SourceUrl** | Pointer to **string** |  | [optional] 
 **AssetType** | **string** |  | 
@@ -197,6 +198,16 @@ SetCreatedAt sets CreatedAt field to given value.
 
 HasCreatedAt returns a boolean if a field has been set.
 
+### SetCreatedAtNil
+
+`func (o *BookmarksPostRequest) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *BookmarksPostRequest) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetType
 
 `func (o *BookmarksPostRequest) GetType() string`
@@ -236,6 +247,31 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+
+### GetPrecrawledArchiveId
+
+`func (o *BookmarksPostRequest) GetPrecrawledArchiveId() string`
+
+GetPrecrawledArchiveId returns the PrecrawledArchiveId field if non-nil, zero value otherwise.
+
+### GetPrecrawledArchiveIdOk
+
+`func (o *BookmarksPostRequest) GetPrecrawledArchiveIdOk() (*string, bool)`
+
+GetPrecrawledArchiveIdOk returns a tuple with the PrecrawledArchiveId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrecrawledArchiveId
+
+`func (o *BookmarksPostRequest) SetPrecrawledArchiveId(v string)`
+
+SetPrecrawledArchiveId sets PrecrawledArchiveId field to given value.
+
+### HasPrecrawledArchiveId
+
+`func (o *BookmarksPostRequest) HasPrecrawledArchiveId() bool`
+
+HasPrecrawledArchiveId returns a boolean if a field has been set.
 
 ### GetText
 

@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,14 +21,15 @@ var _ MappedNullable = &BookmarksBookmarkIdPatch200Response{}
 
 // BookmarksBookmarkIdPatch200Response struct for BookmarksBookmarkIdPatch200Response
 type BookmarksBookmarkIdPatch200Response struct {
-	Id            string         `json:"id"`
-	CreatedAt     string         `json:"createdAt"`
-	Title         NullableString `json:"title,omitempty"`
-	Archived      bool           `json:"archived"`
-	Favourited    bool           `json:"favourited"`
+	Id string `json:"id"`
+	CreatedAt string `json:"createdAt"`
+	ModifiedAt NullableString `json:"modifiedAt"`
+	Title NullableString `json:"title,omitempty"`
+	Archived bool `json:"archived"`
+	Favourited bool `json:"favourited"`
 	TaggingStatus NullableString `json:"taggingStatus"`
-	Note          NullableString `json:"note,omitempty"`
-	Summary       NullableString `json:"summary,omitempty"`
+	Note NullableString `json:"note,omitempty"`
+	Summary NullableString `json:"summary,omitempty"`
 }
 
 type _BookmarksBookmarkIdPatch200Response BookmarksBookmarkIdPatch200Response
@@ -37,10 +38,11 @@ type _BookmarksBookmarkIdPatch200Response BookmarksBookmarkIdPatch200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBookmarksBookmarkIdPatch200Response(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString) *BookmarksBookmarkIdPatch200Response {
+func NewBookmarksBookmarkIdPatch200Response(id string, createdAt string, modifiedAt NullableString, archived bool, favourited bool, taggingStatus NullableString) *BookmarksBookmarkIdPatch200Response {
 	this := BookmarksBookmarkIdPatch200Response{}
 	this.Id = id
 	this.CreatedAt = createdAt
+	this.ModifiedAt = modifiedAt
 	this.Archived = archived
 	this.Favourited = favourited
 	this.TaggingStatus = taggingStatus
@@ -103,6 +105,32 @@ func (o *BookmarksBookmarkIdPatch200Response) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
+// GetModifiedAt returns the ModifiedAt field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *BookmarksBookmarkIdPatch200Response) GetModifiedAt() string {
+	if o == nil || o.ModifiedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.ModifiedAt.Get()
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BookmarksBookmarkIdPatch200Response) GetModifiedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
+}
+
+// SetModifiedAt sets field value
+func (o *BookmarksBookmarkIdPatch200Response) SetModifiedAt(v string) {
+	o.ModifiedAt.Set(&v)
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BookmarksBookmarkIdPatch200Response) GetTitle() string {
 	if o == nil || IsNil(o.Title.Get()) {
@@ -135,7 +163,6 @@ func (o *BookmarksBookmarkIdPatch200Response) HasTitle() bool {
 func (o *BookmarksBookmarkIdPatch200Response) SetTitle(v string) {
 	o.Title.Set(&v)
 }
-
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *BookmarksBookmarkIdPatch200Response) SetTitleNil() {
 	o.Title.Set(nil)
@@ -252,7 +279,6 @@ func (o *BookmarksBookmarkIdPatch200Response) HasNote() bool {
 func (o *BookmarksBookmarkIdPatch200Response) SetNote(v string) {
 	o.Note.Set(&v)
 }
-
 // SetNoteNil sets the value for Note to be an explicit nil
 func (o *BookmarksBookmarkIdPatch200Response) SetNoteNil() {
 	o.Note.Set(nil)
@@ -295,7 +321,6 @@ func (o *BookmarksBookmarkIdPatch200Response) HasSummary() bool {
 func (o *BookmarksBookmarkIdPatch200Response) SetSummary(v string) {
 	o.Summary.Set(&v)
 }
-
 // SetSummaryNil sets the value for Summary to be an explicit nil
 func (o *BookmarksBookmarkIdPatch200Response) SetSummaryNil() {
 	o.Summary.Set(nil)
@@ -307,7 +332,7 @@ func (o *BookmarksBookmarkIdPatch200Response) UnsetSummary() {
 }
 
 func (o BookmarksBookmarkIdPatch200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -318,6 +343,7 @@ func (o BookmarksBookmarkIdPatch200Response) ToMap() (map[string]interface{}, er
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["createdAt"] = o.CreatedAt
+	toSerialize["modifiedAt"] = o.ModifiedAt.Get()
 	if o.Title.IsSet() {
 		toSerialize["title"] = o.Title.Get()
 	}
@@ -340,6 +366,7 @@ func (o *BookmarksBookmarkIdPatch200Response) UnmarshalJSON(data []byte) (err er
 	requiredProperties := []string{
 		"id",
 		"createdAt",
+		"modifiedAt",
 		"archived",
 		"favourited",
 		"taggingStatus",
@@ -350,10 +377,10 @@ func (o *BookmarksBookmarkIdPatch200Response) UnmarshalJSON(data []byte) (err er
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -409,3 +436,5 @@ func (v *NullableBookmarksBookmarkIdPatch200Response) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

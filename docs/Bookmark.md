@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **CreatedAt** | **string** |  | 
+**ModifiedAt** | **NullableString** |  | 
 **Title** | Pointer to **NullableString** |  | [optional] 
 **Archived** | **bool** |  | 
 **Favourited** | **bool** |  | 
@@ -14,13 +15,13 @@ Name | Type | Description | Notes
 **Summary** | Pointer to **NullableString** |  | [optional] 
 **Tags** | [**[]BookmarkTagsInner**](BookmarkTagsInner.md) |  | 
 **Content** | [**BookmarkContent**](BookmarkContent.md) |  | 
-**Assets** | [**[]BookmarkAssetsInner**](BookmarkAssetsInner.md) |  | 
+**Assets** | [**[]BookmarksBookmarkIdAssetsPostRequest**](BookmarksBookmarkIdAssetsPostRequest.md) |  | 
 
 ## Methods
 
 ### NewBookmark
 
-`func NewBookmark(id string, createdAt string, archived bool, favourited bool, taggingStatus NullableString, tags []BookmarkTagsInner, content BookmarkContent, assets []BookmarkAssetsInner, ) *Bookmark`
+`func NewBookmark(id string, createdAt string, modifiedAt NullableString, archived bool, favourited bool, taggingStatus NullableString, tags []BookmarkTagsInner, content BookmarkContent, assets []BookmarksBookmarkIdAssetsPostRequest, ) *Bookmark`
 
 NewBookmark instantiates a new Bookmark object
 This constructor will assign default values to properties that have it defined,
@@ -75,6 +76,36 @@ and a boolean to check if the value has been set.
 SetCreatedAt sets CreatedAt field to given value.
 
 
+### GetModifiedAt
+
+`func (o *Bookmark) GetModifiedAt() string`
+
+GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+
+### GetModifiedAtOk
+
+`func (o *Bookmark) GetModifiedAtOk() (*string, bool)`
+
+GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModifiedAt
+
+`func (o *Bookmark) SetModifiedAt(v string)`
+
+SetModifiedAt sets ModifiedAt field to given value.
+
+
+### SetModifiedAtNil
+
+`func (o *Bookmark) SetModifiedAtNil(b bool)`
+
+ SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil
+
+### UnsetModifiedAt
+`func (o *Bookmark) UnsetModifiedAt()`
+
+UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil
 ### GetTitle
 
 `func (o *Bookmark) GetTitle() string`
@@ -292,20 +323,20 @@ SetContent sets Content field to given value.
 
 ### GetAssets
 
-`func (o *Bookmark) GetAssets() []BookmarkAssetsInner`
+`func (o *Bookmark) GetAssets() []BookmarksBookmarkIdAssetsPostRequest`
 
 GetAssets returns the Assets field if non-nil, zero value otherwise.
 
 ### GetAssetsOk
 
-`func (o *Bookmark) GetAssetsOk() (*[]BookmarkAssetsInner, bool)`
+`func (o *Bookmark) GetAssetsOk() (*[]BookmarksBookmarkIdAssetsPostRequest, bool)`
 
 GetAssetsOk returns a tuple with the Assets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssets
 
-`func (o *Bookmark) SetAssets(v []BookmarkAssetsInner)`
+`func (o *Bookmark) SetAssets(v []BookmarksBookmarkIdAssetsPostRequest)`
 
 SetAssets sets Assets field to given value.
 

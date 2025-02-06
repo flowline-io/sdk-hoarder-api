@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,18 +21,19 @@ var _ MappedNullable = &BookmarkContentOneOf{}
 
 // BookmarkContentOneOf struct for BookmarkContentOneOf
 type BookmarkContentOneOf struct {
-	Type                   string         `json:"type"`
-	Url                    string         `json:"url"`
-	Title                  NullableString `json:"title,omitempty"`
-	Description            NullableString `json:"description,omitempty"`
-	ImageUrl               NullableString `json:"imageUrl,omitempty"`
-	ImageAssetId           NullableString `json:"imageAssetId,omitempty"`
-	ScreenshotAssetId      NullableString `json:"screenshotAssetId,omitempty"`
+	Type string `json:"type"`
+	Url string `json:"url"`
+	Title NullableString `json:"title,omitempty"`
+	Description NullableString `json:"description,omitempty"`
+	ImageUrl NullableString `json:"imageUrl,omitempty"`
+	ImageAssetId NullableString `json:"imageAssetId,omitempty"`
+	ScreenshotAssetId NullableString `json:"screenshotAssetId,omitempty"`
 	FullPageArchiveAssetId NullableString `json:"fullPageArchiveAssetId,omitempty"`
-	VideoAssetId           NullableString `json:"videoAssetId,omitempty"`
-	Favicon                NullableString `json:"favicon,omitempty"`
-	HtmlContent            NullableString `json:"htmlContent,omitempty"`
-	CrawledAt              NullableString `json:"crawledAt,omitempty"`
+	PrecrawledArchiveAssetId NullableString `json:"precrawledArchiveAssetId,omitempty"`
+	VideoAssetId NullableString `json:"videoAssetId,omitempty"`
+	Favicon NullableString `json:"favicon,omitempty"`
+	HtmlContent NullableString `json:"htmlContent,omitempty"`
+	CrawledAt NullableString `json:"crawledAt,omitempty"`
 }
 
 type _BookmarkContentOneOf BookmarkContentOneOf
@@ -136,7 +137,6 @@ func (o *BookmarkContentOneOf) HasTitle() bool {
 func (o *BookmarkContentOneOf) SetTitle(v string) {
 	o.Title.Set(&v)
 }
-
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *BookmarkContentOneOf) SetTitleNil() {
 	o.Title.Set(nil)
@@ -179,7 +179,6 @@ func (o *BookmarkContentOneOf) HasDescription() bool {
 func (o *BookmarkContentOneOf) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *BookmarkContentOneOf) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -222,7 +221,6 @@ func (o *BookmarkContentOneOf) HasImageUrl() bool {
 func (o *BookmarkContentOneOf) SetImageUrl(v string) {
 	o.ImageUrl.Set(&v)
 }
-
 // SetImageUrlNil sets the value for ImageUrl to be an explicit nil
 func (o *BookmarkContentOneOf) SetImageUrlNil() {
 	o.ImageUrl.Set(nil)
@@ -265,7 +263,6 @@ func (o *BookmarkContentOneOf) HasImageAssetId() bool {
 func (o *BookmarkContentOneOf) SetImageAssetId(v string) {
 	o.ImageAssetId.Set(&v)
 }
-
 // SetImageAssetIdNil sets the value for ImageAssetId to be an explicit nil
 func (o *BookmarkContentOneOf) SetImageAssetIdNil() {
 	o.ImageAssetId.Set(nil)
@@ -308,7 +305,6 @@ func (o *BookmarkContentOneOf) HasScreenshotAssetId() bool {
 func (o *BookmarkContentOneOf) SetScreenshotAssetId(v string) {
 	o.ScreenshotAssetId.Set(&v)
 }
-
 // SetScreenshotAssetIdNil sets the value for ScreenshotAssetId to be an explicit nil
 func (o *BookmarkContentOneOf) SetScreenshotAssetIdNil() {
 	o.ScreenshotAssetId.Set(nil)
@@ -351,7 +347,6 @@ func (o *BookmarkContentOneOf) HasFullPageArchiveAssetId() bool {
 func (o *BookmarkContentOneOf) SetFullPageArchiveAssetId(v string) {
 	o.FullPageArchiveAssetId.Set(&v)
 }
-
 // SetFullPageArchiveAssetIdNil sets the value for FullPageArchiveAssetId to be an explicit nil
 func (o *BookmarkContentOneOf) SetFullPageArchiveAssetIdNil() {
 	o.FullPageArchiveAssetId.Set(nil)
@@ -360,6 +355,48 @@ func (o *BookmarkContentOneOf) SetFullPageArchiveAssetIdNil() {
 // UnsetFullPageArchiveAssetId ensures that no value is present for FullPageArchiveAssetId, not even an explicit nil
 func (o *BookmarkContentOneOf) UnsetFullPageArchiveAssetId() {
 	o.FullPageArchiveAssetId.Unset()
+}
+
+// GetPrecrawledArchiveAssetId returns the PrecrawledArchiveAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BookmarkContentOneOf) GetPrecrawledArchiveAssetId() string {
+	if o == nil || IsNil(o.PrecrawledArchiveAssetId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PrecrawledArchiveAssetId.Get()
+}
+
+// GetPrecrawledArchiveAssetIdOk returns a tuple with the PrecrawledArchiveAssetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BookmarkContentOneOf) GetPrecrawledArchiveAssetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PrecrawledArchiveAssetId.Get(), o.PrecrawledArchiveAssetId.IsSet()
+}
+
+// HasPrecrawledArchiveAssetId returns a boolean if a field has been set.
+func (o *BookmarkContentOneOf) HasPrecrawledArchiveAssetId() bool {
+	if o != nil && o.PrecrawledArchiveAssetId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrecrawledArchiveAssetId gets a reference to the given NullableString and assigns it to the PrecrawledArchiveAssetId field.
+func (o *BookmarkContentOneOf) SetPrecrawledArchiveAssetId(v string) {
+	o.PrecrawledArchiveAssetId.Set(&v)
+}
+// SetPrecrawledArchiveAssetIdNil sets the value for PrecrawledArchiveAssetId to be an explicit nil
+func (o *BookmarkContentOneOf) SetPrecrawledArchiveAssetIdNil() {
+	o.PrecrawledArchiveAssetId.Set(nil)
+}
+
+// UnsetPrecrawledArchiveAssetId ensures that no value is present for PrecrawledArchiveAssetId, not even an explicit nil
+func (o *BookmarkContentOneOf) UnsetPrecrawledArchiveAssetId() {
+	o.PrecrawledArchiveAssetId.Unset()
 }
 
 // GetVideoAssetId returns the VideoAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -394,7 +431,6 @@ func (o *BookmarkContentOneOf) HasVideoAssetId() bool {
 func (o *BookmarkContentOneOf) SetVideoAssetId(v string) {
 	o.VideoAssetId.Set(&v)
 }
-
 // SetVideoAssetIdNil sets the value for VideoAssetId to be an explicit nil
 func (o *BookmarkContentOneOf) SetVideoAssetIdNil() {
 	o.VideoAssetId.Set(nil)
@@ -437,7 +473,6 @@ func (o *BookmarkContentOneOf) HasFavicon() bool {
 func (o *BookmarkContentOneOf) SetFavicon(v string) {
 	o.Favicon.Set(&v)
 }
-
 // SetFaviconNil sets the value for Favicon to be an explicit nil
 func (o *BookmarkContentOneOf) SetFaviconNil() {
 	o.Favicon.Set(nil)
@@ -480,7 +515,6 @@ func (o *BookmarkContentOneOf) HasHtmlContent() bool {
 func (o *BookmarkContentOneOf) SetHtmlContent(v string) {
 	o.HtmlContent.Set(&v)
 }
-
 // SetHtmlContentNil sets the value for HtmlContent to be an explicit nil
 func (o *BookmarkContentOneOf) SetHtmlContentNil() {
 	o.HtmlContent.Set(nil)
@@ -523,7 +557,6 @@ func (o *BookmarkContentOneOf) HasCrawledAt() bool {
 func (o *BookmarkContentOneOf) SetCrawledAt(v string) {
 	o.CrawledAt.Set(&v)
 }
-
 // SetCrawledAtNil sets the value for CrawledAt to be an explicit nil
 func (o *BookmarkContentOneOf) SetCrawledAtNil() {
 	o.CrawledAt.Set(nil)
@@ -535,7 +568,7 @@ func (o *BookmarkContentOneOf) UnsetCrawledAt() {
 }
 
 func (o BookmarkContentOneOf) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -563,6 +596,9 @@ func (o BookmarkContentOneOf) ToMap() (map[string]interface{}, error) {
 	}
 	if o.FullPageArchiveAssetId.IsSet() {
 		toSerialize["fullPageArchiveAssetId"] = o.FullPageArchiveAssetId.Get()
+	}
+	if o.PrecrawledArchiveAssetId.IsSet() {
+		toSerialize["precrawledArchiveAssetId"] = o.PrecrawledArchiveAssetId.Get()
 	}
 	if o.VideoAssetId.IsSet() {
 		toSerialize["videoAssetId"] = o.VideoAssetId.Get()
@@ -593,10 +629,10 @@ func (o *BookmarkContentOneOf) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -652,3 +688,5 @@ func (v *NullableBookmarkContentOneOf) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

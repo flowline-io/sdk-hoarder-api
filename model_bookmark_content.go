@@ -12,13 +12,13 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 	"gopkg.in/validator.v2"
+	"fmt"
 )
 
 // BookmarkContent - struct for BookmarkContent
 type BookmarkContent struct {
-	BookmarkContentOneOf  *BookmarkContentOneOf
+	BookmarkContentOneOf *BookmarkContentOneOf
 	BookmarkContentOneOf1 *BookmarkContentOneOf1
 	BookmarkContentOneOf2 *BookmarkContentOneOf2
 	BookmarkContentOneOf3 *BookmarkContentOneOf3
@@ -51,6 +51,7 @@ func BookmarkContentOneOf3AsBookmarkContent(v *BookmarkContentOneOf3) BookmarkCo
 		BookmarkContentOneOf3: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *BookmarkContent) UnmarshalJSON(data []byte) error {
@@ -161,7 +162,7 @@ func (src BookmarkContent) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *BookmarkContent) GetActualInstance() interface{} {
+func (obj *BookmarkContent) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -220,3 +221,5 @@ func (v *NullableBookmarkContent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

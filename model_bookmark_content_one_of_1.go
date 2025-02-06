@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &BookmarkContentOneOf1{}
 
 // BookmarkContentOneOf1 struct for BookmarkContentOneOf1
 type BookmarkContentOneOf1 struct {
-	Type      string         `json:"type"`
-	Text      string         `json:"text"`
+	Type string `json:"type"`
+	Text string `json:"text"`
 	SourceUrl NullableString `json:"sourceUrl,omitempty"`
 }
 
@@ -127,7 +127,6 @@ func (o *BookmarkContentOneOf1) HasSourceUrl() bool {
 func (o *BookmarkContentOneOf1) SetSourceUrl(v string) {
 	o.SourceUrl.Set(&v)
 }
-
 // SetSourceUrlNil sets the value for SourceUrl to be an explicit nil
 func (o *BookmarkContentOneOf1) SetSourceUrlNil() {
 	o.SourceUrl.Set(nil)
@@ -139,7 +138,7 @@ func (o *BookmarkContentOneOf1) UnsetSourceUrl() {
 }
 
 func (o BookmarkContentOneOf1) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -170,10 +169,10 @@ func (o *BookmarkContentOneOf1) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -229,3 +228,5 @@ func (v *NullableBookmarkContentOneOf1) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

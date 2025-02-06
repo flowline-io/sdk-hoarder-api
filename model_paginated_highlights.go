@@ -16,63 +16,63 @@ import (
 	"fmt"
 )
 
-// checks if the PaginatedBookmarks type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PaginatedBookmarks{}
+// checks if the PaginatedHighlights type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedHighlights{}
 
-// PaginatedBookmarks struct for PaginatedBookmarks
-type PaginatedBookmarks struct {
-	Bookmarks []Bookmark `json:"bookmarks"`
+// PaginatedHighlights struct for PaginatedHighlights
+type PaginatedHighlights struct {
+	Highlights []Highlight `json:"highlights"`
 	NextCursor NullableString `json:"nextCursor"`
 }
 
-type _PaginatedBookmarks PaginatedBookmarks
+type _PaginatedHighlights PaginatedHighlights
 
-// NewPaginatedBookmarks instantiates a new PaginatedBookmarks object
+// NewPaginatedHighlights instantiates a new PaginatedHighlights object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedBookmarks(bookmarks []Bookmark, nextCursor NullableString) *PaginatedBookmarks {
-	this := PaginatedBookmarks{}
-	this.Bookmarks = bookmarks
+func NewPaginatedHighlights(highlights []Highlight, nextCursor NullableString) *PaginatedHighlights {
+	this := PaginatedHighlights{}
+	this.Highlights = highlights
 	this.NextCursor = nextCursor
 	return &this
 }
 
-// NewPaginatedBookmarksWithDefaults instantiates a new PaginatedBookmarks object
+// NewPaginatedHighlightsWithDefaults instantiates a new PaginatedHighlights object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPaginatedBookmarksWithDefaults() *PaginatedBookmarks {
-	this := PaginatedBookmarks{}
+func NewPaginatedHighlightsWithDefaults() *PaginatedHighlights {
+	this := PaginatedHighlights{}
 	return &this
 }
 
-// GetBookmarks returns the Bookmarks field value
-func (o *PaginatedBookmarks) GetBookmarks() []Bookmark {
+// GetHighlights returns the Highlights field value
+func (o *PaginatedHighlights) GetHighlights() []Highlight {
 	if o == nil {
-		var ret []Bookmark
+		var ret []Highlight
 		return ret
 	}
 
-	return o.Bookmarks
+	return o.Highlights
 }
 
-// GetBookmarksOk returns a tuple with the Bookmarks field value
+// GetHighlightsOk returns a tuple with the Highlights field value
 // and a boolean to check if the value has been set.
-func (o *PaginatedBookmarks) GetBookmarksOk() ([]Bookmark, bool) {
+func (o *PaginatedHighlights) GetHighlightsOk() ([]Highlight, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Bookmarks, true
+	return o.Highlights, true
 }
 
-// SetBookmarks sets field value
-func (o *PaginatedBookmarks) SetBookmarks(v []Bookmark) {
-	o.Bookmarks = v
+// SetHighlights sets field value
+func (o *PaginatedHighlights) SetHighlights(v []Highlight) {
+	o.Highlights = v
 }
 
 // GetNextCursor returns the NextCursor field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *PaginatedBookmarks) GetNextCursor() string {
+func (o *PaginatedHighlights) GetNextCursor() string {
 	if o == nil || o.NextCursor.Get() == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *PaginatedBookmarks) GetNextCursor() string {
 // GetNextCursorOk returns a tuple with the NextCursor field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PaginatedBookmarks) GetNextCursorOk() (*string, bool) {
+func (o *PaginatedHighlights) GetNextCursorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,11 +92,11 @@ func (o *PaginatedBookmarks) GetNextCursorOk() (*string, bool) {
 }
 
 // SetNextCursor sets field value
-func (o *PaginatedBookmarks) SetNextCursor(v string) {
+func (o *PaginatedHighlights) SetNextCursor(v string) {
 	o.NextCursor.Set(&v)
 }
 
-func (o PaginatedBookmarks) MarshalJSON() ([]byte, error) {
+func (o PaginatedHighlights) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,19 +104,19 @@ func (o PaginatedBookmarks) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PaginatedBookmarks) ToMap() (map[string]interface{}, error) {
+func (o PaginatedHighlights) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bookmarks"] = o.Bookmarks
+	toSerialize["highlights"] = o.Highlights
 	toSerialize["nextCursor"] = o.NextCursor.Get()
 	return toSerialize, nil
 }
 
-func (o *PaginatedBookmarks) UnmarshalJSON(data []byte) (err error) {
+func (o *PaginatedHighlights) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"bookmarks",
+		"highlights",
 		"nextCursor",
 	}
 
@@ -134,53 +134,53 @@ func (o *PaginatedBookmarks) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPaginatedBookmarks := _PaginatedBookmarks{}
+	varPaginatedHighlights := _PaginatedHighlights{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPaginatedBookmarks)
+	err = decoder.Decode(&varPaginatedHighlights)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PaginatedBookmarks(varPaginatedBookmarks)
+	*o = PaginatedHighlights(varPaginatedHighlights)
 
 	return err
 }
 
-type NullablePaginatedBookmarks struct {
-	value *PaginatedBookmarks
+type NullablePaginatedHighlights struct {
+	value *PaginatedHighlights
 	isSet bool
 }
 
-func (v NullablePaginatedBookmarks) Get() *PaginatedBookmarks {
+func (v NullablePaginatedHighlights) Get() *PaginatedHighlights {
 	return v.value
 }
 
-func (v *NullablePaginatedBookmarks) Set(val *PaginatedBookmarks) {
+func (v *NullablePaginatedHighlights) Set(val *PaginatedHighlights) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePaginatedBookmarks) IsSet() bool {
+func (v NullablePaginatedHighlights) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePaginatedBookmarks) Unset() {
+func (v *NullablePaginatedHighlights) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePaginatedBookmarks(val *PaginatedBookmarks) *NullablePaginatedBookmarks {
-	return &NullablePaginatedBookmarks{value: val, isSet: true}
+func NewNullablePaginatedHighlights(val *PaginatedHighlights) *NullablePaginatedHighlights {
+	return &NullablePaginatedHighlights{value: val, isSet: true}
 }
 
-func (v NullablePaginatedBookmarks) MarshalJSON() ([]byte, error) {
+func (v NullablePaginatedHighlights) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePaginatedBookmarks) UnmarshalJSON(src []byte) error {
+func (v *NullablePaginatedHighlights) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

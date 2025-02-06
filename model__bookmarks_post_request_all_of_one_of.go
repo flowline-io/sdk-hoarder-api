@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,7 +22,8 @@ var _ MappedNullable = &BookmarksPostRequestAllOfOneOf{}
 // BookmarksPostRequestAllOfOneOf struct for BookmarksPostRequestAllOfOneOf
 type BookmarksPostRequestAllOfOneOf struct {
 	Type string `json:"type"`
-	Url  string `json:"url"`
+	Url string `json:"url"`
+	PrecrawledArchiveId *string `json:"precrawledArchiveId,omitempty"`
 }
 
 type _BookmarksPostRequestAllOfOneOf BookmarksPostRequestAllOfOneOf
@@ -94,8 +95,40 @@ func (o *BookmarksPostRequestAllOfOneOf) SetUrl(v string) {
 	o.Url = v
 }
 
+// GetPrecrawledArchiveId returns the PrecrawledArchiveId field value if set, zero value otherwise.
+func (o *BookmarksPostRequestAllOfOneOf) GetPrecrawledArchiveId() string {
+	if o == nil || IsNil(o.PrecrawledArchiveId) {
+		var ret string
+		return ret
+	}
+	return *o.PrecrawledArchiveId
+}
+
+// GetPrecrawledArchiveIdOk returns a tuple with the PrecrawledArchiveId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BookmarksPostRequestAllOfOneOf) GetPrecrawledArchiveIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PrecrawledArchiveId) {
+		return nil, false
+	}
+	return o.PrecrawledArchiveId, true
+}
+
+// HasPrecrawledArchiveId returns a boolean if a field has been set.
+func (o *BookmarksPostRequestAllOfOneOf) HasPrecrawledArchiveId() bool {
+	if o != nil && !IsNil(o.PrecrawledArchiveId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrecrawledArchiveId gets a reference to the given string and assigns it to the PrecrawledArchiveId field.
+func (o *BookmarksPostRequestAllOfOneOf) SetPrecrawledArchiveId(v string) {
+	o.PrecrawledArchiveId = &v
+}
+
 func (o BookmarksPostRequestAllOfOneOf) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -106,6 +139,9 @@ func (o BookmarksPostRequestAllOfOneOf) ToMap() (map[string]interface{}, error) 
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["url"] = o.Url
+	if !IsNil(o.PrecrawledArchiveId) {
+		toSerialize["precrawledArchiveId"] = o.PrecrawledArchiveId
+	}
 	return toSerialize, nil
 }
 
@@ -123,10 +159,10 @@ func (o *BookmarksPostRequestAllOfOneOf) UnmarshalJSON(data []byte) (err error) 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -182,3 +218,5 @@ func (v *NullableBookmarksPostRequestAllOfOneOf) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

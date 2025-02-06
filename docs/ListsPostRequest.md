@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Icon** | **string** |  | 
+**Type** | Pointer to **string** |  | [optional] [default to "manual"]
+**Query** | Pointer to **string** |  | [optional] 
 **ParentId** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
@@ -66,6 +68,56 @@ and a boolean to check if the value has been set.
 
 SetIcon sets Icon field to given value.
 
+
+### GetType
+
+`func (o *ListsPostRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ListsPostRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ListsPostRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *ListsPostRequest) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetQuery
+
+`func (o *ListsPostRequest) GetQuery() string`
+
+GetQuery returns the Query field if non-nil, zero value otherwise.
+
+### GetQueryOk
+
+`func (o *ListsPostRequest) GetQueryOk() (*string, bool)`
+
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *ListsPostRequest) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
+
+### HasQuery
+
+`func (o *ListsPostRequest) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
 
 ### GetParentId
 

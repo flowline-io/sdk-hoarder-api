@@ -11,8 +11,8 @@ API version: 1.0.0
 package openapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,8 +21,10 @@ var _ MappedNullable = &ListsPostRequest{}
 
 // ListsPostRequest struct for ListsPostRequest
 type ListsPostRequest struct {
-	Name     string         `json:"name"`
-	Icon     string         `json:"icon"`
+	Name string `json:"name"`
+	Icon string `json:"icon"`
+	Type *string `json:"type,omitempty"`
+	Query *string `json:"query,omitempty"`
 	ParentId NullableString `json:"parentId,omitempty"`
 }
 
@@ -36,6 +38,8 @@ func NewListsPostRequest(name string, icon string) *ListsPostRequest {
 	this := ListsPostRequest{}
 	this.Name = name
 	this.Icon = icon
+	var type_ string = "manual"
+	this.Type = &type_
 	return &this
 }
 
@@ -44,6 +48,8 @@ func NewListsPostRequest(name string, icon string) *ListsPostRequest {
 // but it doesn't guarantee that properties required by API are set
 func NewListsPostRequestWithDefaults() *ListsPostRequest {
 	this := ListsPostRequest{}
+	var type_ string = "manual"
+	this.Type = &type_
 	return &this
 }
 
@@ -95,6 +101,70 @@ func (o *ListsPostRequest) SetIcon(v string) {
 	o.Icon = v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ListsPostRequest) GetType() string {
+	if o == nil || IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListsPostRequest) GetTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ListsPostRequest) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *ListsPostRequest) SetType(v string) {
+	o.Type = &v
+}
+
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *ListsPostRequest) GetQuery() string {
+	if o == nil || IsNil(o.Query) {
+		var ret string
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListsPostRequest) GetQueryOk() (*string, bool) {
+	if o == nil || IsNil(o.Query) {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *ListsPostRequest) HasQuery() bool {
+	if o != nil && !IsNil(o.Query) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given string and assigns it to the Query field.
+func (o *ListsPostRequest) SetQuery(v string) {
+	o.Query = &v
+}
+
 // GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ListsPostRequest) GetParentId() string {
 	if o == nil || IsNil(o.ParentId.Get()) {
@@ -127,7 +197,6 @@ func (o *ListsPostRequest) HasParentId() bool {
 func (o *ListsPostRequest) SetParentId(v string) {
 	o.ParentId.Set(&v)
 }
-
 // SetParentIdNil sets the value for ParentId to be an explicit nil
 func (o *ListsPostRequest) SetParentIdNil() {
 	o.ParentId.Set(nil)
@@ -139,7 +208,7 @@ func (o *ListsPostRequest) UnsetParentId() {
 }
 
 func (o ListsPostRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -150,6 +219,12 @@ func (o ListsPostRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["icon"] = o.Icon
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Query) {
+		toSerialize["query"] = o.Query
+	}
 	if o.ParentId.IsSet() {
 		toSerialize["parentId"] = o.ParentId.Get()
 	}
@@ -170,10 +245,10 @@ func (o *ListsPostRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -229,3 +304,5 @@ func (v *NullableListsPostRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

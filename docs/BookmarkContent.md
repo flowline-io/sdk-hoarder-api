@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **ImageAssetId** | Pointer to **NullableString** |  | [optional] 
 **ScreenshotAssetId** | Pointer to **NullableString** |  | [optional] 
 **FullPageArchiveAssetId** | Pointer to **NullableString** |  | [optional] 
+**PrecrawledArchiveAssetId** | Pointer to **NullableString** |  | [optional] 
 **VideoAssetId** | Pointer to **NullableString** |  | [optional] 
 **Favicon** | Pointer to **NullableString** |  | [optional] 
 **HtmlContent** | Pointer to **NullableString** |  | [optional] 
@@ -291,6 +292,41 @@ HasFullPageArchiveAssetId returns a boolean if a field has been set.
 `func (o *BookmarkContent) UnsetFullPageArchiveAssetId()`
 
 UnsetFullPageArchiveAssetId ensures that no value is present for FullPageArchiveAssetId, not even an explicit nil
+### GetPrecrawledArchiveAssetId
+
+`func (o *BookmarkContent) GetPrecrawledArchiveAssetId() string`
+
+GetPrecrawledArchiveAssetId returns the PrecrawledArchiveAssetId field if non-nil, zero value otherwise.
+
+### GetPrecrawledArchiveAssetIdOk
+
+`func (o *BookmarkContent) GetPrecrawledArchiveAssetIdOk() (*string, bool)`
+
+GetPrecrawledArchiveAssetIdOk returns a tuple with the PrecrawledArchiveAssetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrecrawledArchiveAssetId
+
+`func (o *BookmarkContent) SetPrecrawledArchiveAssetId(v string)`
+
+SetPrecrawledArchiveAssetId sets PrecrawledArchiveAssetId field to given value.
+
+### HasPrecrawledArchiveAssetId
+
+`func (o *BookmarkContent) HasPrecrawledArchiveAssetId() bool`
+
+HasPrecrawledArchiveAssetId returns a boolean if a field has been set.
+
+### SetPrecrawledArchiveAssetIdNil
+
+`func (o *BookmarkContent) SetPrecrawledArchiveAssetIdNil(b bool)`
+
+ SetPrecrawledArchiveAssetIdNil sets the value for PrecrawledArchiveAssetId to be an explicit nil
+
+### UnsetPrecrawledArchiveAssetId
+`func (o *BookmarkContent) UnsetPrecrawledArchiveAssetId()`
+
+UnsetPrecrawledArchiveAssetId ensures that no value is present for PrecrawledArchiveAssetId, not even an explicit nil
 ### GetVideoAssetId
 
 `func (o *BookmarkContent) GetVideoAssetId() string`
