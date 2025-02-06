@@ -11,10 +11,11 @@ package openapi
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/flowline-io/sdk-hoarder-api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func Test_openapi_HighlightsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_openapi_HighlightsAPIService(t *testing.T) {
 
 	t.Run("Test HighlightsAPIService HighlightsGet", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.HighlightsAPI.HighlightsGet(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_openapi_HighlightsAPIService(t *testing.T) {
 
 	t.Run("Test HighlightsAPIService HighlightsHighlightIdDelete", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var highlightId string
 
@@ -50,7 +51,7 @@ func Test_openapi_HighlightsAPIService(t *testing.T) {
 
 	t.Run("Test HighlightsAPIService HighlightsHighlightIdGet", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var highlightId string
 
@@ -64,7 +65,7 @@ func Test_openapi_HighlightsAPIService(t *testing.T) {
 
 	t.Run("Test HighlightsAPIService HighlightsHighlightIdPatch", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var highlightId string
 
@@ -78,7 +79,7 @@ func Test_openapi_HighlightsAPIService(t *testing.T) {
 
 	t.Run("Test HighlightsAPIService HighlightsPost", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.HighlightsAPI.HighlightsPost(context.Background()).Execute()
 
